@@ -4,17 +4,16 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="user")
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
-	@Id	
+//	@GeneratedValue(strategy=GenerationType.IDENTITY)
+//	private Long id;
+	@Id
 	private String email;
 	private String password;
 	private String name;
@@ -22,7 +21,8 @@ public class User implements Serializable {
 	private String city;
 	private boolean administrator;
 	
-	
+	public User() {
+	}
 	
 	public User(String email, String password, String name, String surname, String city, boolean administrator) {
 		super();
@@ -33,10 +33,18 @@ public class User implements Serializable {
 		this.city = city;
 		this.administrator = administrator;
 	}
-	
+//	public Long getId() {
+//		return id;
+//	}
+//
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
+
 	public String getEmail() {
 		return email;
 	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}

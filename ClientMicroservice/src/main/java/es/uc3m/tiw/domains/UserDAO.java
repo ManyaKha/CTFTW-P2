@@ -9,7 +9,7 @@ public interface UserDAO extends CrudRepository<User, Long>{
 	public List<User> findAll();
 	
 	public User findByEmail(String email); 	
-	public User findByEmailAndPassword(String email, String password);
 	
+	public User findByEmailAndPassword(String email, String password);
 	
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Page to update new user</title>
+</head>
+<body>
+<form th:action="@{/pagina-search-usuario}" method="post">
+<label>Search User name:</label>
+<input type="text" th:value="${name}" name="name">
+<input type="submit" value="Search" />
+</form>
+
+<form th:action="@{/pagina-update-usuario}" th:object="${usuario}" method="post">
+<label >User name:</label>
+<input type="hidden" th:field="*{iduser}" value="Prueba">
+<label >User name:</label>
+<input type="text" th:field="*{name}" value="Prueba">
+<label >User surname:</label>
+<input type="text" th:field="*{surname}" value="Prueba">
+<input type="submit" value="Update" />
+</form>
+
+</body>
+</html>

@@ -16,9 +16,7 @@ import es.uc3m.tiw.domains.Payment;
 public class PaymentController {
 	
 	@RequestMapping(value="/payment",method=RequestMethod.POST)
-	public @ResponseBody ResponseEntity<String> processPayment(
-											@RequestBody @Validated Payment payment) {
-		
+	public @ResponseBody ResponseEntity<String> processPayment( @RequestBody @Validated Payment payment) {
 		ResponseEntity<String> response;
 		if (payment.getCard().validateCard()) {
 			response = new ResponseEntity<>(payment.getTransactionCode().toString(), HttpStatus.OK);

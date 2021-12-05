@@ -14,15 +14,15 @@ public class Product implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String Title;
+	String title;
 
-	private String Owner;
+	String owner;
 
-	private String Category;
+	String category;
 	
-	private int Price;
+	int price;
 	
-	private String Status;
+	String status;
 	
 	public Product() {
 		
@@ -30,51 +30,51 @@ public class Product implements Serializable {
 	
 	public Product(String Title, String Owner, String Category, int Price, String Status) {
 		super();
-		this.Title=Title;
-		this.Owner=Owner;
-		this.Category=Category;
-		this.Price=Price;
-		this.Status=Status;
+		this.title=Title;
+		this.owner=Owner;
+		this.category=Category;
+		this.price=Price;
+		this.status=Status;
 	}
 
 	public String getTitle() {
-		return this.Title;
+		return this.title;
 	}
 
 	public void setTitle(String title) {
-		this.Title = title;
+		this.title = title;
 	}
 
 	public String getOwner() {
-		return Owner;
+		return owner;
 	}
 
 	public void setOwner(String owner) {
-		Owner = owner;
+		owner = owner;
 	}
 
 	public String getCategory() {
-		return Category;
+		return category;
 	}
 
 	public void setCategory(String category) {
-		Category = category;
+		category = category;
 	}
 
 	public int getPrice() {
-		return Price;
+		return price;
 	}
 
 	public void setPrice(int price) {
-		Price = price;
+		price = price;
 	}
 
 	public String getStatus() {
-		return Status;
+		return status;
 	}
 
 	public void setStatus(String status) {
-		Status = status;
+		status = status;
 	}	
 
 }

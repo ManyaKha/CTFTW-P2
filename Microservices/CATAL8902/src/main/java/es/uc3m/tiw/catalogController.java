@@ -20,6 +20,7 @@ import es.uc3m.tiw.domains.ProductDAO;
 public class catalogController {
 	//@Autowired
 	//ProductDAO daoproduct;
+	
 	@Autowired
 	ProductDAO daoproduct;
 	
@@ -31,14 +32,16 @@ public class catalogController {
       return "index";
    }
    
-   @RequestMapping(value="/products", method = RequestMethod.GET)
+  /** @RequestMapping(value="/products", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<List<Product>> getUsers(@RequestParam(value="Title",required=false) String Title){
 		List<Product> productList;
 		productList = daoproduct.findAll();
 		
 		return new ResponseEntity<>(productList, HttpStatus.OK);
+	}**/
+   
+   @RequestMapping(value= "/products",method = RequestMethod.GET)
+	public @ResponseBody List<Product> getUsers(){
+		return daoproduct.findAll();
 	}
-
-   
-   
 }

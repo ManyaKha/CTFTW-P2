@@ -21,7 +21,6 @@ public class TransactionController {
 	
 	@RequestMapping(value = "/transactions", method = RequestMethod.GET, produces = "application/json")
 	public List<Transaction> getTransactions(){
-		System.out.println("HEIS");
 		List<Transaction> transactions = transactionRepository.findAll();
 		return transactions;
 	}

@@ -1,7 +1,7 @@
 [
 	{ 
 		"_id": "c002f530-2ca4-433a-9a69-74c1444747ce",
-		"timeOfPurchase": "15-02-2002 12:01:45",
+		"timeOfTransaction": "15-02-2002 12:01:45",
 		"productName": "Flying car",
 		"price": 50,
 		"seller": "Harry Potter",
@@ -10,7 +10,7 @@
 	
 	{
 		"_id": "a67e5b10-569e-11ec-bf63-0242ac130002",
-		"timeOfPurchase": "23-02-2018 14:02:44",
+		"timeOfTransaction": "23-02-2018 14:02:44",
 		"productName": "Reinsdeer",
 		"price": 300,
 		"seller": "Santa Clause",
@@ -18,7 +18,7 @@
 	},
 	{
 		"_id": "1ee1d38e-569f-11ec-bf63-0242ac130002",
-		"timeOfPurchase": "08-08-2008 08:08:08",
+		"timeOfTransaction": "08-08-2008 08:08:08",
 		"productName": "Eight ball",
 		"price": 8,
 		"seller": "Genie",

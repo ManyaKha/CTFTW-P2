@@ -7,16 +7,17 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @SuppressWarnings("serial")
-@Document(collection="transactions")
+@Document(collection="Transactions")
 @JsonPropertyOrder({"_id", "timeOfTransaction", "productName", "price", "seller", "buyer"})
 public class Transaction implements Serializable{
 	
 	@Id
 	private String id;
-	private Date timeOfTransaction;
+	private String timeOfTransaction;
 	private String productName;
 	private int price;
 	private String seller;
@@ -27,7 +28,7 @@ public class Transaction implements Serializable{
 	}
 	
 	@PersistenceConstructor
-	public Transaction(String id, Date timeOfTransaction, String productName, int price, String seller,String buyer) {
+	public Transaction(String id, String timeOfTransaction, String productName, int price, String seller,String buyer) {
 		this.id = id;
 		this.setTimeOfTransaction(timeOfTransaction);
 		this.setProductName(productName);
@@ -36,11 +37,11 @@ public class Transaction implements Serializable{
 		this.setBuyer(buyer);
 	}
 
-	public Date getTimeOfTransaction() {
+	public String getTimeOfTransaction() {
 		return timeOfTransaction;
 	}
 
-	public void setTimeOfTransaction(Date timeOfTransaction) {
+	public void setTimeOfTransaction(String timeOfTransaction) {
 		this.timeOfTransaction = timeOfTransaction;
 	}
 

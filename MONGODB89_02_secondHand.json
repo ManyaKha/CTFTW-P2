@@ -1,0 +1,10 @@
+[
+	{ 
+		"_id": "UUID",
+		"timeOfPurchase": "22-23-32",
+		"productName": "name",
+		"price": "99",
+		"seller": "Mr. Man",
+		"buyer": "Buyer"
+	}
+]

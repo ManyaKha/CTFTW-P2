@@ -2,18 +2,13 @@ package es.uc3m.tiw.domains;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
-
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
 //	@GeneratedValue(strategy=GenerationType.IDENTITY)
 //	private Long id;
-	@Id
+
 	private String email;
 	private String password;
 	private String name;
@@ -33,6 +28,13 @@ public class User implements Serializable {
 		this.city = city;
 		this.administrator = administrator;
 	}
+//	public Long getId() {
+//		return id;
+//	}
+//
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
 
 	public String getEmail() {
 		return email;

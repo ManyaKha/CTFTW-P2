@@ -21,13 +21,18 @@ public class UserController {
 	@RequestMapping (value = "loginUser", method = RequestMethod.GET)
 	public String loginUser(Model model, @RequestParam String email, @RequestParam String password) {
 		User user = restTemplate.getForObject("http://localhost:18902/users/{email}/{password}", User.class, email, password);
-		return "myaccount.html";
-	}
+		System.out.println(user);
+		if (user != null) {	
+			return "myaccount.html";
+		}
+		return "login.html";
 
+	}
 	
 	@RequestMapping (value = "registerUser", method = RequestMethod.POST)
 	public String createUser(Model model, @ModelAttribute User us) {
 		User user = restTemplate.postForObject("http://localhost:18902/users", us, User.class);
+		
 		model.addAttribute("user", user);
 		return "myaccount.html";
 	}

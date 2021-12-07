@@ -32,11 +32,7 @@ public class UserController {
 		return daouser.findByEmail(email);
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping(value = "/users/{email}/{password}", method = RequestMethod.GET)
-=======
-	@RequestMapping(value="/users/{email}/{password}", method = RequestMethod.GET)
->>>>>>> main
 	public @ResponseBody User getUserByEmailAndPassword(@PathVariable String email,
 											  @PathVariable String password){
 		return daouser.findByEmailAndPassword(email, password);

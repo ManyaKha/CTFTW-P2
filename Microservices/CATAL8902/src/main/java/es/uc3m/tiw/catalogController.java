@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -74,4 +75,33 @@ public class catalogController {
 		return daoproduct.findByStatus(status);
    }
    
+   /*Create New Product*/
+	@RequestMapping(method = RequestMethod.POST, value="/products")
+	public @ResponseBody Product createNewProduct(@RequestBody @Validated Product sProduct) {
+		System.out.println(sProduct);
+		return daoproduct.save(sProduct);
+	}
+	
+	/*Delete Existing Product*/
+	@RequestMapping(method = RequestMethod.DELETE, value="/products/{owner}/{title}")
+	public void deleteProduct(@PathVariable @Validated String Title, String Owner)	{
+		Product prod = daoproduct.findByTitleAndOwner(Title,Owner);
+		if(prod != null) {
+			daoproduct.delete(prod);
+		}
+	}
+	
+	/*Update existing product*/
+	@RequestMapping(method = RequestMethod.PUT, value="/products/{owner}/{title}")
+	public @ResponseBody Product updateProduct(@PathVariable @Validated String title,@PathVariable @Validated String owner, @RequestBody Product sProd) {
+		Product prod = daoproduct.findByTitleAndOwner(title, owner);
+		prod.setTitle(sProd.getTitle());
+		prod.setOwner(sProd.getOwner());	
+		prod.setStatus(sProd.getStatus());
+		prod.setCategory(sProd.getCategory());
+		prod.setPrice(sProd.getPrice());
+		prod.setStatus(sProd.getStatus());
+		return daoproduct.save(sProd);
+	}
+
 }

@@ -12,5 +12,6 @@ public interface ProductDAO extends CrudRepository<Product,Long>{
 	public List<Product> findByTitle(String Title);
 	public List<Product> findByCategory(String Category);
 	public List<Product> findByOwner(String Owner);
+	public List<Product> findByStatus(String status);
 	public Product findByTitleAndOwner(String Title, String Owner);
-}
+	}

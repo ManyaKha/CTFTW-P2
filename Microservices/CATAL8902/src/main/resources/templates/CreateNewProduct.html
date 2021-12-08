@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Page to create a new user</title>
+</head>
+<body>
+<form th:action="@{/page-post-product}" th:object="${product}" method="post">
+	<label >Product name:</label>
+	<input type="text" th:field="*{title}">
+	<label >Owner name:</label>
+	<input type="text" th:field="*{owner}">
+	<label >Category name:</label>
+	<input type="text" th:field="*{category}">
+	<input type="submit" value="Submit" />
+</form>
+
+</body>
+</html>

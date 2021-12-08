@@ -10,13 +10,10 @@
         <link rel="stylesheet" href="style/style.css">
   </head>
 
-  <body>
-    <header id= main_header>
-    	<a href="/"> <h1 id="logo">Second-Hand Administration</h1> </a>
-    </header>
-    
+  <body id="register_body">
     <div class="form-container">
-        <h1>Create Account</h1>
+        <h1>Second-Hand Administration</h1>
+        <h2>Sign Up</h2>
           <form class="form" th:action="@{/createUser}" th:object="${user}" method="post">
             <div>
               <label for="email">Email:</label>
@@ -52,31 +49,9 @@
             <div><input type="submit" value="Create User" class="btn"></div>
           </form>
           <div id="create-user">
-             <p>Already have a user?</p> <a href="../register">Log in</a>
+             <p>Already have a user?</p> <a href="../login">Log in</a>
           </div>
           
       </div>
-
-      <footer>
-        <div class="footer_small">
-          <div class="content_left">
-            <h1 id="logo_footer">Second-Hand</h1>
-          </div>
-          <div class="content_middle">
-            <a href="link">FAQ</a>
-            <a href="link">Privacy Policy</a>
-          </div>
-        </div>
-
-        <div class="content_right">
-          <div>
-            <h4>Follow us!</h4>
-          </div>
-          <div>
-              <a href="#" class="fa fa-facebook"></a>
-              <a href="#" class="fa fa-instagram"></a>
-          </div>
-        </div>
-      </footer>
   </body>
 </html>

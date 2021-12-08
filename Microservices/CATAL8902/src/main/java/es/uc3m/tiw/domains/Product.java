@@ -3,22 +3,23 @@ package es.uc3m.tiw.domains;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name="product")
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	String title;
 
 	String owner;
 
 	String category;
+	
+	String description;
 	
 	int price;
 	
@@ -28,13 +29,14 @@ public class Product implements Serializable {
 		
 	}
 	
-	public Product(String Title, String Owner, String Category, int Price, String Status) {
+	public Product(String title, String owner, String category, String description, int price, String status) {
 		super();
-		this.title=Title;
-		this.owner=Owner;
-		this.category=Category;
-		this.price=Price;
-		this.status=Status;
+		this.title=title;
+		this.owner=owner;
+		this.category=category;
+		this.description=description;
+		this.price=price;
+		this.status=status;
 	}
 
 	public String getTitle() {
@@ -50,7 +52,7 @@ public class Product implements Serializable {
 	}
 
 	public void setOwner(String owner) {
-		owner = owner;
+		this.owner = owner;
 	}
 
 	public String getCategory() {
@@ -58,15 +60,24 @@ public class Product implements Serializable {
 	}
 
 	public void setCategory(String category) {
-		category = category;
+		this.category = category;
 	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 
 	public int getPrice() {
 		return price;
 	}
 
 	public void setPrice(int price) {
-		price = price;
+		this.price = price;
 	}
 
 	public String getStatus() {
@@ -74,7 +85,7 @@ public class Product implements Serializable {
 	}
 
 	public void setStatus(String status) {
-		status = status;
+		this.status = status;
 	}	
 
 }

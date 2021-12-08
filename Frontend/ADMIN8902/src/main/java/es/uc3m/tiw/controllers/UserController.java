@@ -18,13 +18,13 @@ public class UserController {
 	RestTemplate restTemplate;
 	String CLIE8902_URL = "http://localhost:18902/";
 	
-	@RequestMapping(value = "/createUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/create-user", method = RequestMethod.POST)
 	public String createUser(Model model, @ModelAttribute User user) {
 		restTemplate.postForObject(this.CLIE8902_URL+"users", user, User.class);
 		return "login.html";
 	}
 	
-	@RequestMapping(value = "/loginUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/login-user", method = RequestMethod.GET)
 	public String loginUser(Model model, @RequestParam String email, @RequestParam String password) {
 		User user = restTemplate.getForObject(this.CLIE8902_URL+"users/"+email+"/"+password, User.class);
 		
@@ -36,5 +36,11 @@ public class UserController {
 			return "index.html";
 		}
 	}
+	
+	@RequestMapping(value = "/manage-users", method = RequestMethod.GET)
+	public String showManageUsers() {
+		return "manageUsers.html";
+	}
+	
 	
 }

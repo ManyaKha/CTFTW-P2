@@ -46,4 +46,13 @@ public class UserController {
 		}
 		return "index";	
 	}
+	
+	@RequestMapping (value = "updateUserAccount", method = RequestMethod.POST)
+	public String updateUser(Model model, @RequestParam String email){
+		User user = restTemplate.getForObject("http://localhost:18902/users/{email}", User.class, email);
+		if (user != null) {
+			restTemplate.put("http://localhost:18902/users/{email}", user.getEmail());
+		}
+		return "index";	
+	}
 }

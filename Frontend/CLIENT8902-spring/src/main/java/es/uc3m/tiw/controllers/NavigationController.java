@@ -31,6 +31,16 @@ public class NavigationController {
 	public String deleteUser(){
 		return "unsubscribe.html";
 	}
+	
+	@RequestMapping (value="/deleteproduct", method = RequestMethod.GET)
+	public String deleteProduct(){
+		return "deleteproduct.html";
+	}
+
+	@RequestMapping (value = "/updateproduct", method = RequestMethod.GET)
+	public String updateProduct(){
+		return "updateproduct.html";
+	}
 
 
 }

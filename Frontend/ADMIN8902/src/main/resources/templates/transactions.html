@@ -24,26 +24,24 @@
     
     <div id="page_content">
     	<h1>Transactions</h1>
-    	<table>
-    	<tr>
-    		<td>Transaction ID</td>
-    		<td>Data and Time</td>
-    		<td>Name of Product</td>
-    		<td>Price (in Euro) </td>
-    		<td>Seller</td>
-    		<td>Buyer</td>
-    	<tr>
-    	<tr th:each="transaction : ${transactions}">
-    		<td th:text="${transaction.timeOfTransaction}"></td>
-    		<td th:text="${transaction.timeOfTransaction}"></td>
-    		<td th:text="${transaction.productName}"></td>
-    		<td th:text="${transaction.price}"></td>
-    		<td th:text="${transaction.seller}"></td>
-    		<td th:text="${transaction.buyer}"></td>
-    	</tr>
+    	<table id="transactions">
+	    	<tr>
+	    		<th>Transaction ID</th>
+	    		<th>Data and Time</th>
+	    		<th>Price (in Euro) </th>
+	    		<th>Seller</th>
+	    		<th>Buyer</th>
+	    		<th>Name of Product</th>
+	    	<tr>
+	    	<tr th:each="transaction : ${transactions}">
+	    		<td th:text="${transaction.timeOfTransaction}">Unknown</td>
+	    		<td th:text="${transaction.timeOfTransaction}">Unknown</td>
+	    		<td th:text="${transaction.price}" class="number">Unknown</td>
+	    		<td th:text="${transaction.seller}">Unknown</td>
+	    		<td th:text="${transaction.buyer}">Unknown</td>
+	    		<td th:text="${transaction.productName}">Unknown</td>
+	    	</tr>
     	</table>
-    	
-    
     </div>
   </body>
 </html>

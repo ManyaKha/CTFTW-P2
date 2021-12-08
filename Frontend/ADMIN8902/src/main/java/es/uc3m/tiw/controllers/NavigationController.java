@@ -41,12 +41,5 @@ public class NavigationController {
 	public String showManageProducts() {
 		return "manageProducts.html";
 	}
-	
-	@RequestMapping(value = "/transactions", method = RequestMethod.GET)
-	public String showTransactions() {
-		return "transactions.html";
-	}
-	
-	
 
 }

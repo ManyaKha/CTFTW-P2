@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <title>Second-Hand Shop | Home</title>
@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="style/style.css">
   </head>
-  <body>
     
     <header id="main_header">
     	<h1 id="logo">Second-Hand Administration</h1>
@@ -24,7 +23,26 @@
     </header>
     
     <div id="page_content">
-    	<h1>TEST</h1>
+    	<h1>Transactions</h1>
+    	<table>
+    	<tr>
+    		<td>Transaction ID</td>
+    		<td>Data and Time</td>
+    		<td>Name of Product</td>
+    		<td>Price (in Euro) </td>
+    		<td>Seller</td>
+    		<td>Buyer</td>
+    	<tr>
+    	<tr th:each="transaction : ${transactions}">
+    		<td th:text="${transaction.timeOfTransaction}"></td>
+    		<td th:text="${transaction.timeOfTransaction}"></td>
+    		<td th:text="${transaction.productName}"></td>
+    		<td th:text="${transaction.price}"></td>
+    		<td th:text="${transaction.seller}"></td>
+    		<td th:text="${transaction.buyer}"></td>
+    	</tr>
+    	</table>
+    	
     
     </div>
   </body>

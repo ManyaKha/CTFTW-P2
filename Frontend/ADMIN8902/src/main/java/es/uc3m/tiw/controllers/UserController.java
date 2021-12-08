@@ -20,7 +20,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/createUser", method = RequestMethod.POST)
 	public String createUser(Model model, @ModelAttribute User user) {
-		User test = restTemplate.postForObject(this.CLIE8902_URL+"users", user, User.class);
+		restTemplate.postForObject(this.CLIE8902_URL+"users", user, User.class);
 		return "login.html";
 	}
 	

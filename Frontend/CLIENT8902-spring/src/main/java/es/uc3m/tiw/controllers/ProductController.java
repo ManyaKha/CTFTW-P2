@@ -1,5 +1,6 @@
 package es.uc3m.tiw.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,14 +13,14 @@ import es.uc3m.tiw.domains.Product;
 
 @Controller
 public class ProductController {
-	
+	@Autowired
 	RestTemplate restTemplate;
 	
 	@RequestMapping (value = "addProduct", method = RequestMethod.POST)
 	public String addProduct(Model model, @ModelAttribute Product product) {
 	   Product newProduct = restTemplate.postForObject("http://localhost:18903/products", product, Product.class);
 	   model.addAttribute("product", newProduct);
-	   return "viewProduct";
+	   return "index";
     }
    
 	@RequestMapping (value = "deleteProduct", method = RequestMethod.POST)
@@ -30,9 +31,8 @@ public class ProductController {
 		}
 		return "index";	
 	}
-	
 
-	@RequestMapping (value = "updateProduct", method = RequestMethod.POST)
+	@RequestMapping (value = "updateProduct", method = RequestMethod.PUT)
 	public String updateProduct(Model model, @ModelAttribute Product product){
 		restTemplate.put("http://localhost:18903/products", product, Product.class);
 		return "index";	

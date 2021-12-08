@@ -32,6 +32,11 @@ public class NavigationController {
 		return "unsubscribe.html";
 	}
 	
+	@RequestMapping (value = "/addproduct", method = RequestMethod.GET)
+	public String addProduct(){
+		return "addproduct.html";
+	}
+	
 	@RequestMapping (value="/deleteproduct", method = RequestMethod.GET)
 	public String deleteProduct(){
 		return "deleteproduct.html";

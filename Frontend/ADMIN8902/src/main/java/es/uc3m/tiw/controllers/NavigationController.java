@@ -17,7 +17,7 @@ public class NavigationController {
 		return "index.html";
 	}
 	
-	@RequestMapping("/index.html")
+	@RequestMapping("/index")
 	public String showIndex() {
 		return "index.html";
 	}
@@ -31,5 +31,22 @@ public class NavigationController {
 	public String showLogin() {
 		return "login.html";
 	}
+	
+	@RequestMapping(value = "/manage-users", method = RequestMethod.GET)
+	public String showManageUsers() {
+		return "manageUsers.html";
+	}
+	
+	@RequestMapping(value = "/manage-products", method = RequestMethod.GET)
+	public String showManageProducts() {
+		return "manageProducts.html";
+	}
+	
+	@RequestMapping(value = "/transactions", method = RequestMethod.GET)
+	public String showTransactions() {
+		return "transactions.html";
+	}
+	
+	
 
 }

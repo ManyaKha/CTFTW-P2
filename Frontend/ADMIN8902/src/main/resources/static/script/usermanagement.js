@@ -27,3 +27,11 @@ $(document).on("click", ".close", function(){
 	console.log(modal);
 	hideModal(modal);
 });
+
+$(document).on("click", ".delete", function(){
+	var email = $(this).parents("tr").find("td:first-child").text();
+	console.log(email);
+	$.post("/delete-user/"+email, function(){
+		window.location.href="manage-users";
+	});
+});

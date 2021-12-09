@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,5 +54,16 @@ public class UserController {
 		restTemplate.put(this.CLIE8902_URL+"/users/"+user.getEmail(), user);
 		String redirect = this.showManageUsers(model);
 		return redirect;
+	}
+	
+	@RequestMapping(value = "/delete-user/{email}", method = RequestMethod.POST)
+	public String deleteUser(Model model, @PathVariable String email) {
+		restTemplate.delete(this.CLIE8902_URL+"users/"+email);
+		User[] users = restTemplate.getForObject(this.CLIE8902_URL+"users", User[].class);
+		model.addAttribute("users", users);
+		for (User u : users) {
+			System.out.println("User - "+u.getName());
+		}
+		return "manageUsers.html";
 	}
 }

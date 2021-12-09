@@ -21,6 +21,7 @@ public class UserController {
 	@Autowired
 	UserDAO daouser;
 	
+	
 	@RequestMapping(value= "/users",method = RequestMethod.GET)
 	public @ResponseBody List<User> getUsers(){
 		return daouser.findAll();
@@ -38,9 +39,9 @@ public class UserController {
 		return daouser.findByEmailAndPassword(email, password);
 	}
 
+
 	@RequestMapping(method = RequestMethod.POST, value="/users")
 	public @ResponseBody User createUser(@RequestBody @Validated User sUser) {
-		System.out.println(sUser);
 		return daouser.save(sUser);
 	}
 	
@@ -52,6 +53,7 @@ public class UserController {
 		us.setCity(uUser.getCity());
 		us.setEmail(uUser.getEmail());
 		us.setPassword(uUser.getPassword());
+		us.setCurrent(uUser.isCurrent());
 		return daouser.save(us);
 	}
 
@@ -62,7 +64,6 @@ public class UserController {
 			daouser.delete(us);
 		}
 	}
-	
 	
 
 

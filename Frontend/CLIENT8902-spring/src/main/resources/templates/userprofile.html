@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Unsubscribe</title>
+    <title>User profile</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla&display=swap" rel="stylesheet">
@@ -19,20 +19,22 @@
             <a href="#">Contact Us</a>
           </div>
           <div class="buttons" id="buttons">
-            <button type="button" class="login_button" onclick="location.href='../login'">Login</button>
+            <button type="button" class="login_button">Login</button>
           </div>
       </header>
 
-      <div class="form-container">
-        <h1>Unsubscribe</h1>
-          <form class="form" th:action="@{/delete-user}" th:object="${user}" method="post">
-              <div> <label for="email">Email</label>
-                <br>
-               <input type="email" placeholder="Enter Email" name="email" id="email" required></div>
+      <div class="profile-container">
+        <h1>Welcome <span th:text="${user.name}">Default user name</span></h1>
+        
+          
 
-              <div><input type="submit" value="Delete account" class="btn"/></div>
-          </form>
-      </div>
+         <div class="manage-btn" class="btn">>Manage your products</div>
+         <div class="unsub"><a  href="unsubscribe" class="btn">Unsubscribe </a></div>
+
+         
+
+
+        </div>
 
 
       <footer>

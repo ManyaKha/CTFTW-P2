@@ -18,27 +18,41 @@ public class UserController {
 	RestTemplate restTemplate;
 	
 
-	@RequestMapping (value = "loginUser", method = RequestMethod.GET)
-	public String loginUser(Model model, @RequestParam String email, @RequestParam String password) {
-		User user = restTemplate.getForObject("http://localhost:18902/users/{email}/{password}", User.class, email, password);
-		System.out.println(user);
-		if (user != null) {	
-			return "myaccount.html";
-		}
-		return "login.html";
-
-	}
-	
-	@RequestMapping (value = "registerUser", method = RequestMethod.POST)
-	public String createUser(Model model, @ModelAttribute User us) {
-		User user = restTemplate.postForObject("http://localhost:18902/users", us, User.class);
-		
-		model.addAttribute("user", user);
+	@RequestMapping (value = "set-current-user", method = RequestMethod.PUT)
+	public String setCurrentUser(Model model, @ModelAttribute User uUser) {
+		uUser.setCurrent(true);
+		restTemplate.put("http://localhost:18902/users/"+ uUser.getEmail(), uUser);
+		model.addAttribute("current", uUser);
 		return "myaccount.html";
 	}
 	
+	@RequestMapping (value = "login-user", method = RequestMethod.GET)
+	public String loginUser(Model model, @RequestParam String email, @RequestParam String password) {
+		User user = restTemplate.getForObject("http://localhost:18902/users/{email}/{password}", User.class, email, password);
+		if (user != null) {	
+			model.addAttribute("user", user);
+			setCurrentUser(model, user);
+			return "myaccount.html";
+		}
+		return "login.html";
+	}
 	
-	@RequestMapping (value = "deleteUserAccount", method = RequestMethod.POST)
+	@RequestMapping (value = "register-user", method = RequestMethod.POST)
+	public String createUser(Model model, @ModelAttribute User uUser) {
+		uUser.setCurrent(true);
+		User user = restTemplate.postForObject("http://localhost:18902/users", uUser, User.class);
+		model.addAttribute("user", user);
+		setCurrentUser(model, user);
+		return "myaccount.html";
+	}
+	
+	@RequestMapping (value = "logout-user", method = RequestMethod.PUT)
+	public void logoutUser(@RequestParam User uUser){
+		uUser.setCurrent(false);
+	}
+	
+	
+	@RequestMapping (value = "delete-user", method = RequestMethod.POST)
 	public String deleteUser(Model model, @RequestParam String email){
 		User user = restTemplate.getForObject("http://localhost:18902/users/{email}", User.class, email);
 		if (user != null) {
@@ -46,4 +60,6 @@ public class UserController {
 		}
 		return "index";	
 	}
+	
+	
 }

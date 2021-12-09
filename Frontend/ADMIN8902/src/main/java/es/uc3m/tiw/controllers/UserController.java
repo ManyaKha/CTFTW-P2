@@ -1,5 +1,9 @@
 package es.uc3m.tiw.controllers;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,9 +42,16 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/manage-users", method = RequestMethod.GET)
-	public String showManageUsers() {
+	public String showManageUsers(Model model) {
+		User[] users = restTemplate.getForObject(this.CLIE8902_URL+"users", User[].class);
+		model.addAttribute("users", users);
 		return "manageUsers.html";
 	}
 	
-	
+	@RequestMapping(value = "/edit-user", method = RequestMethod.POST)
+	public String editUser(Model model, User user){
+		restTemplate.put(this.CLIE8902_URL+"/users/"+user.getEmail(), user);
+		String redirect = this.showManageUsers(model);
+		return redirect;
+	}
 }

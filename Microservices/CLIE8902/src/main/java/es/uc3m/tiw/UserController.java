@@ -52,6 +52,7 @@ public class UserController {
 		us.setCity(uUser.getCity());
 		us.setEmail(uUser.getEmail());
 		us.setPassword(uUser.getPassword());
+		us.setAdministrator(uUser.isAdministrator());
 		return daouser.save(us);
 	}
 

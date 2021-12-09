@@ -32,11 +32,6 @@ public class NavigationController {
 		return "login.html";
 	}
 	
-	@RequestMapping(value = "/manage-users", method = RequestMethod.GET)
-	public String showManageUsers() {
-		return "manageUsers.html";
-	}
-	
 	@RequestMapping(value = "/manage-products", method = RequestMethod.GET)
 	public String showManageProducts() {
 		return "manageProducts.html";

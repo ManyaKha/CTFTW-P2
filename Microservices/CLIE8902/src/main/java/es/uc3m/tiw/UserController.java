@@ -3,6 +3,8 @@ package es.uc3m.tiw;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,14 +54,18 @@ public class UserController {
 		us.setCity(uUser.getCity());
 		us.setEmail(uUser.getEmail());
 		us.setPassword(uUser.getPassword());
+		us.setAdministrator(uUser.isAdministrator());
 		return daouser.save(us);
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value="/users/{email}")
-	public void deleteUser(@PathVariable @Validated String email)	{
+	public ResponseEntity<User> deleteUser(@PathVariable @Validated String email)	{
 		User us = daouser.findByEmail(email);
 		if(us != null) {
 			daouser.delete(us);
+			return new ResponseEntity<>(us, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 	

@@ -448,3 +448,8 @@ float: right;
   background-color: #ddd;
   outline: none;
 }
+
+
+.hidden_input{
+	display: none !important;
+}

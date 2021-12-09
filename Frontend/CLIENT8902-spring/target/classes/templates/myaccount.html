@@ -25,6 +25,7 @@
 
       <div class="form-container">
         <h1>My Account</h1>
+        <p>Email: <span th:text="${user.email}">default email</span></p>
           <form class="form" th:action="@{/updateUser}" th:object="${user}" method="post">
 
             <div>

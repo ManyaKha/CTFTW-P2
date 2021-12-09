@@ -34,19 +34,17 @@
               <input type="text" name="title" required>
             </div>
             
-            <div>
-
+            <div class="hidden_input">
               <label for="owner">Owner email:</label>
               <br>
-              <input type="text" name="owner" required>
+              <input type="text" name="owner" th:value=${user.email} >
             </div>
-
 
 
             <div>
               <label for="description">Description: </label>
               <br>
-              <input id="description" type="textarea" name="description" required>
+              <input id="description" type="text" name="description" required>
             </div>
             <div class="">
               <label for="categories">Select Category: </label>
@@ -70,10 +68,11 @@
               <br>
               <input type="file" name="image" >
             </div>
-            <div>
-              <label for="status">status: </label>
+            
+            <div class="hidden_input">
+              <label for="status">Status: </label>
               <br>
-              <input type=text name="status" >
+              <input type=text name="status" value="Available">
             </div>
 
             <div>

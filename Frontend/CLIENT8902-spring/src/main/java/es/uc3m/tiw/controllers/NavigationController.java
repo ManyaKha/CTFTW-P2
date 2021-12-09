@@ -31,6 +31,11 @@ public class NavigationController {
 	public String deleteUser(){
 		return "unsubscribe.html";
 	}
+	
+	@RequestMapping (value="/myaccount", method = RequestMethod.GET)
+	public String myAccount(){
+		return "myaccount.html";
+	}
 
 
 }

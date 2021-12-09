@@ -23,7 +23,7 @@ public class UserController {
 		User user = restTemplate.getForObject("http://localhost:18902/users/{email}/{password}", User.class, email, password);
 		System.out.println(user);
 		if (user != null) {	
-			return "myaccount.html";
+			return "index-loggedin.html";
 		}
 		return "login.html";
 
@@ -34,7 +34,7 @@ public class UserController {
 		User user = restTemplate.postForObject("http://localhost:18902/users", us, User.class);
 		
 		model.addAttribute("user", user);
-		return "myaccount.html";
+		return "index-loggedin.html";
 	}
 	
 	

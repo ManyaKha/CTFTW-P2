@@ -197,18 +197,17 @@ th {
 	text-align: right;
 }
 
-.description {
-	
-}
-
 /*------------------------User Management--------------------------------*/
 
 
 /* table displaying the users and for user management */
 table th i {
-    font-size: 13px;
     margin: 0 5px;
     cursor: pointer;
+}
+
+table th, table td {
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 table td {

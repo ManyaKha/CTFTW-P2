@@ -13,30 +13,35 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	String productId;
 	String title;
-
 	String owner;
-
 	String category;
-	
 	String description;
-	
 	int price;
-	
 	String status;
 	
 	public Product() {
 		
 	}
 	
-	public Product(String title, String owner, String category, String description, int price, String status) {
+	public Product(String productId, String title, String owner, String category, String description, int price, String status) {
 		super();
+		this.productId = productId;
 		this.title=title;
 		this.owner=owner;
 		this.category=category;
 		this.description=description;
 		this.price=price;
 		this.status=status;
+	}
+	
+	public String getProductId() {
+		return this.productId;
+	}
+	
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
 	public String getTitle() {

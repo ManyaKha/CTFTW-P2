@@ -30,7 +30,6 @@ $(document).on("click", ".close", function(){
 
 $(document).on("click", ".delete", function(){
 	var email = $(this).parents("tr").find("td:first-child").text();
-	console.log(email);
 	$.post("/delete-user/"+email, function(){
 		window.location.href="manage-users";
 	});

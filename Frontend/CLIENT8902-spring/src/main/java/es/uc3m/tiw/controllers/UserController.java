@@ -39,19 +39,27 @@ public class UserController {
 		return "login.html";
 	}
 	
-	@RequestMapping (value="/unsubscribe", method = RequestMethod.GET)
-	public String deleteUser(Model model){
+	@RequestMapping (value="/myprofile", method = RequestMethod.GET)
+	public String myProfile(Model model){
 		User c = getCurrentUser();
 		model.addAttribute("current", c);
-		return "unsubscribe.html";
+		return "myprofile.html";
 	}
 	
-	@RequestMapping (value="/account", method = RequestMethod.GET)
+	@RequestMapping (value="/editprofile", method = RequestMethod.GET)
 	public String account(Model model){
 		User c = getCurrentUser();
 		model.addAttribute("current", c);
-		return "account.html";
+		return "editprofile.html";
 	}
+	
+	@RequestMapping (value="/deleteprofile", method = RequestMethod.GET)
+	public String deleteUser(Model model){
+		User c = getCurrentUser();
+		model.addAttribute("current", c);
+		return "deleteprofile.html";
+	}
+	
 	
 	@RequestMapping (value="/addproduct", method = RequestMethod.GET)
 	public String addProduct(){
@@ -63,12 +71,7 @@ public class UserController {
 		return "myproducts.html";
 	}
 	
-	@RequestMapping (value="/myprofile", method = RequestMethod.GET)
-	public String myProfile(Model model){
-		User c = getCurrentUser();
-		model.addAttribute("current", c);
-		return "myprofile.html";
-	}
+	
 
 	
 	//
@@ -107,8 +110,8 @@ public class UserController {
 		return "index-loggedin.html";
 	}
 	
-	@RequestMapping (value = "logout-user", method = RequestMethod.PUT)
-	public String logoutUser(Model model, @RequestParam User uUser){
+	@RequestMapping (value = "logout-user", method = RequestMethod.POST)
+	public String logoutUser(Model model, @ModelAttribute User uUser){
 		User u = getCurrentUser();
 		u.setCurrent(false);
 		return "index.html";
@@ -123,9 +126,13 @@ public class UserController {
 		return "index.html";	
 	}
 	
-	@RequestMapping (value = "update-user", method = RequestMethod.PUT)
+	@RequestMapping (value = "update-user", method = RequestMethod.POST)
 	public String updateUser(Model model, @ModelAttribute User uUser){
-		restTemplate.put("http://localhost:18902/users/"+ uUser.getEmail(), uUser);
-		return "index-loggedin.html";	
+		User user = restTemplate.getForObject("http://localhost:18902/users/"+ uUser.getEmail(), User.class, uUser);
+		if (user != null) {
+			restTemplate.put("http://localhost:18902/users/"+ user.getEmail(), uUser);
+			return "index-loggedin.html";	
+		}
+		return "editprofile.html";	
 	}
 }

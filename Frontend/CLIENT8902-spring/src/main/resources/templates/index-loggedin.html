@@ -20,8 +20,8 @@
           <a href="#">Contact Us</a>
         </div>
         <div class="buttons" id="buttons">
-        	<button type="submit" class="login_button" th:object='${c}' onclick="location.href='../myprofile'">My profile</button>
-          	<button type="submit" class="login_button" >Log Out</button>
+        	<button type="submit" class="login_button" onclick="location.href='../myprofile'">My profile</button>
+          	<button type="submit" class="login_button" th:onclick="th:action='@{/logout-user}'" th:object='${current}' >Log Out</button>
         </div>
     </header>
 </div>

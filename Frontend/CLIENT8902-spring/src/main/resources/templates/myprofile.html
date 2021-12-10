@@ -13,7 +13,7 @@
 <body>
     <div class="header-logged">
 	  <header id= main_header>
-	      <a href="index-loggedin.html"><h1 id="logo">Second-Hand</h1></a>
+	      <a href="loggedin"><h1 id="logo">Second-Hand</h1></a>
 	      <div class=navbar_container>
 	        <div class="menu_options">
 	          <a href="#">About Us</a>
@@ -30,8 +30,8 @@
         <h1>My Profile</h1>
         
         <div>
-        <p>Email: <span th:text="user.email">user email</span> </p>
-        <p>Name: <span th:text="user.name">user name</span> <span th:text="user.surname">user surname</span> </p>
+        <p>Email: <span th:text="${current.email}">user email</span> </p>
+        <p>Name: <span th:text="${current.name}">user name</span> <span th:text="${current.surname}">user surname</span> </p>
         </div>
         
         <div class="profile_buttons">

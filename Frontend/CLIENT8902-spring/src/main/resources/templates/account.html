@@ -31,47 +31,35 @@
           <form class="form" th:action="@{/update-user}" th:object="${user}" method="post">
 
             <div>
-
-              <label for="email">Email:</label>
-              <br>
-              <input type="email" name="email" value="" required>
-
+            	<label for="email">Email:</label><br>
+            	<input type="email" name="email" th:value="${current.email}" required>
             </div>
 
             <div>
               <label for="psw">Password: </label>
               <br>
-              <input type="password" name="email" required>
+              <input type="password" name="password" th:value="${current.password}" required>
             </div>
-
-            <div>
-              <label for="passwordRepeat">Repeat password: </label>
-              <br>
-              <input type="password" name="passwordRepeat" required>
-            </div>
-
 
             <div>
               <label for="name">Name: </label>
               <br>
-              <input type="text" name="name" required>
+              <input type="text" name="name" th:value="${current.name}"required>
             </div>
 
             <div>
               <label for="surname">Surname: </label>
               <br>
-              <input type="text" name="surname" required>
+              <input type="text" name="surname" th:value="${current.surname}" required>
             </div>
 
             <div>
               <label for="city">City of Residence: </label>
               <br>
-              <input type="text" name="city" required>
+              <input type="text" name="city" th:value="${current.city}" required>
             </div>
 
-            <div><input type="submit" value="Update Account" class="btn"></div>
-
-            <div class="manage-btn"><input type="submit" value="Manage Products" class="btn"></div>
+            <div><input type="submit" value="Update account" class="btn"></div>
             <div class="unsub"><a href="unsubscribe" class="btn">Unsubscribe</a></div>
 
           </form>

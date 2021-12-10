@@ -197,6 +197,10 @@ th {
 	text-align: right;
 }
 
+.description {
+	
+}
+
 /*------------------------User Management--------------------------------*/
 
 
@@ -207,16 +211,25 @@ table th i {
     cursor: pointer;
 }
 
+table td {
+	vertical-align: top;
+	overflow: hidden;
+}
+
+table .small-row {
+	width: 8%;
+}
+
+table .big-row {
+	width: 25%;
+}
+
 table td a {
 	cursor: pointer;
     display: inline-block;
     margin: 0 5px;
 	min-width: 24px;
 }  
-  
-table td a.add {
-    color: #27C46B;
-}
 
 table td a.edit {
 	color: #FFC107;
@@ -248,11 +261,6 @@ table .form-control.error {
 	border-color: #f50000;
 }
 
-table td .add {
-	display: none;
-}
-
-
 /* Modal */
 
 .background-overlay {
@@ -282,6 +290,11 @@ table td .add {
   display: block;
 }
 
+.products {
+	width: 500px;
+	height: 800px;
+}
+
 .modal span {
   float: right;
   color: #6d9773;
@@ -300,11 +313,11 @@ table td .add {
 }
 
 .modal form {
-	padding-left: 25px;
+	padding-left: 10%;
 }
 
-.modal form input[type=text], .modal select{
-	width: 300px;
+.modal form input[type=text], .modal select, .modal form input[type="number"] {
+	width: 90%;
 	height: 35px;
 	border: 2px solid #dddddd;
 	box-shadow: none;
@@ -317,8 +330,20 @@ table td .add {
 	color: #838383;
 }
 
-.modal form input[type=text]:focus, .modal select {
+.modal form input:focus, 
+.modal select:focus, 
+.modal textarea:focus {
 	outline: none !important;
+}
+
+.modal textarea {
+	width: 90%;
+	height: 100px;
+	resize: none;
+	border: 2px solid #dddddd;
+	box-shadow: none;
+	padding: 0 8px;
+	border-radius: 2px;
 }
 
 .modal form input[type="submit"] {

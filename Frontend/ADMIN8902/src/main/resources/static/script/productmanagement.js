@@ -29,8 +29,8 @@ $(document).on("click", ".close", function(){
 });
 
 $(document).on("click", ".delete", function(){
-	var email = $(this).parents("tr").find("td:first-child").text();
-	$.post("/delete-user/"+email, function(){
-		window.location.href="manage-users";
+	var id = $(this).parents("tr").find("td:first-child").text();
+	$.post("/delete-product/"+id, function(){
+		window.location.href="manage-products";
 	});
 });

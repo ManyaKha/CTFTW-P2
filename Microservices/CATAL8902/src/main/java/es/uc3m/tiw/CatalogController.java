@@ -4,6 +4,8 @@ package es.uc3m.tiw;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,19 +69,24 @@ public class CatalogController {
 	}
 	
 	/*Delete Existing Product*/
-	@RequestMapping(method = RequestMethod.DELETE, value="/products/productId")
-	public void deleteProduct(@PathVariable @Validated String productId)	{
-		Product prod = daoproduct.findById(productId);
+	@RequestMapping(method = RequestMethod.DELETE, value="/products/{id}")
+	public ResponseEntity<Product> deleteProduct(@PathVariable @Validated String id)	{
+		Product prod = daoproduct.findById(id);
+		System.out.println("Catalog");
+		System.out.println(prod);
 		if(prod != null) {
 			daoproduct.delete(prod);
+			return new ResponseEntity<>(prod, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 	
 	/*Update existing product*/
-	@RequestMapping(method = RequestMethod.PUT, value="/products/{productId}")
-	public @ResponseBody Product updateProduct(@PathVariable String productId, @RequestBody Product sProd) {
-		Product prod = daoproduct.findById(productId);
-		prod.setId(productId);
+	@RequestMapping(method = RequestMethod.PUT, value="/products/{id}")
+	public @ResponseBody Product updateProduct(@PathVariable String id, @RequestBody Product sProd) {
+		Product prod = daoproduct.findById(id);
+		prod.setId(id);
 		prod.setTitle(sProd.getTitle());
 		prod.setOwner(sProd.getOwner());	
 		prod.setStatus(sProd.getStatus());

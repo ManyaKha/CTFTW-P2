@@ -18,14 +18,14 @@ public class Product implements Serializable {
 	String owner;
 	String category;
 	String description;
-	int price;
+	float price;
 	String status;
 	
 	public Product() {
 		
 	}
 	
-	public Product(String id, String title, String owner, String category, String description, int price, String status) {
+	public Product(String id, String title, String owner, String category, String description, float price, String status) {
 		super();
 		this.id = id;
 		this.title=title;
@@ -77,11 +77,11 @@ public class Product implements Serializable {
 	}
 
 
-	public int getPrice() {
-		return price;
+	public float getPrice() {
+		return this.price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 

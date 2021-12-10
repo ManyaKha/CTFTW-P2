@@ -11,13 +11,13 @@ public class Product implements Serializable {
 	String owner;
 	String category;
 	String description;
-	int price;
+	float price;
 	String status;
 	
 	public Product() {
 	}
 	
-	public Product(String id, String title, String owner, String category, String description, int price, String status) {
+	public Product(String id, String title, String owner, String category, String description, float price, String status) {
 		this.id = id;
 		this.title = title;
 		this.owner = owner;
@@ -44,7 +44,7 @@ public class Product implements Serializable {
 	}
 
 	public String getOwner() {
-		return owner;
+		return this.owner;
 	}
 
 	public void setOwner(String owner) {
@@ -52,7 +52,7 @@ public class Product implements Serializable {
 	}
 
 	public String getCategory() {
-		return category;
+		return this.category;
 	}
 
 	public void setCategory(String category) {
@@ -60,7 +60,7 @@ public class Product implements Serializable {
 	}
 	
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 
 	public void setDescription(String description) {
@@ -68,16 +68,16 @@ public class Product implements Serializable {
 	}
 
 
-	public int getPrice() {
-		return price;
+	public float getPrice() {
+		return this.price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 
 	public String getStatus() {
-		return status;
+		return this.status;
 	}
 
 	public void setStatus(String status) {

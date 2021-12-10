@@ -13,7 +13,7 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	String productId;
+	String id;
 	String title;
 	String owner;
 	String category;
@@ -25,9 +25,9 @@ public class Product implements Serializable {
 		
 	}
 	
-	public Product(String productId, String title, String owner, String category, String description, int price, String status) {
+	public Product(String id, String title, String owner, String category, String description, int price, String status) {
 		super();
-		this.productId = productId;
+		this.id = id;
 		this.title=title;
 		this.owner=owner;
 		this.category=category;
@@ -36,12 +36,12 @@ public class Product implements Serializable {
 		this.status=status;
 	}
 	
-	public String getProductId() {
-		return this.productId;
+	public String getId() {
+		return this.id;
 	}
 	
-	public void setProductId(String productId) {
-		this.productId = productId;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getTitle() {

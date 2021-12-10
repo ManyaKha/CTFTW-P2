@@ -43,7 +43,7 @@ public class CatalogController {
    /*Search Product by Title and Owner*/
    @RequestMapping(value= "/products/{title}/{owner}",method = RequestMethod.GET)
    public @ResponseBody Product getProductsByTitleAndOwner(String productId){
-		return daoproduct.findByProductId(productId);
+		return daoproduct.findById(productId);
    }
    
    /*Search Product by Category*/
@@ -69,7 +69,7 @@ public class CatalogController {
 	/*Delete Existing Product*/
 	@RequestMapping(method = RequestMethod.DELETE, value="/products/productId")
 	public void deleteProduct(@PathVariable @Validated String productId)	{
-		Product prod = daoproduct.findByProductId(productId);
+		Product prod = daoproduct.findById(productId);
 		if(prod != null) {
 			daoproduct.delete(prod);
 		}
@@ -78,8 +78,8 @@ public class CatalogController {
 	/*Update existing product*/
 	@RequestMapping(method = RequestMethod.PUT, value="/products/{productId}")
 	public @ResponseBody Product updateProduct(@PathVariable String productId, @RequestBody Product sProd) {
-		Product prod = daoproduct.findByProductId(productId);
-		prod.setProductId(productId);
+		Product prod = daoproduct.findById(productId);
+		prod.setId(productId);
 		prod.setTitle(sProd.getTitle());
 		prod.setOwner(sProd.getOwner());	
 		prod.setStatus(sProd.getStatus());
@@ -89,5 +89,4 @@ public class CatalogController {
 		prod.setStatus(sProd.getStatus());
 		return daoproduct.save(prod);
 	}
-
 }

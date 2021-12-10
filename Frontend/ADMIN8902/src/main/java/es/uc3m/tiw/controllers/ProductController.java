@@ -17,7 +17,7 @@ public class ProductController {
 	RestTemplate restTemplate;
 	String CATAL8902_URL = "http://localhost:18903/products";
 	
-	@RequestMapping(value="/manage-producs", method = RequestMethod.GET)
+	@RequestMapping(value="/manage-products", method = RequestMethod.GET)
 	public String showManageProducts(Model model){
 		Product[] products = restTemplate.getForObject(this.CATAL8902_URL, Product[].class);
 		model.addAttribute("products", products);
@@ -25,14 +25,16 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/edit-product", method = RequestMethod.POST)
-	public String editProduct(Product product){
+	public String editProduct(Model model, Product product){
 		restTemplate.put(this.CATAL8902_URL+"/"+product.getId(), product);
+		Product[] products = restTemplate.getForObject(this.CATAL8902_URL, Product[].class);
+		model.addAttribute("products", products);
 		return "manageProducts.html";
 	}
 	
-	@RequestMapping(value = "/delete-product/", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete-product/{id}", method = RequestMethod.POST)
 	public String deleteProduct(@PathVariable String id){
 		restTemplate.delete(this.CATAL8902_URL+"/"+id);
-		return "managaProducts.html";
+		return "manageProducts.html";
 	}
 }

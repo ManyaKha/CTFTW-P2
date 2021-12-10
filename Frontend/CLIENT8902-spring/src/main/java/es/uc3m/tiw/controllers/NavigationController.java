@@ -31,6 +31,26 @@ public class NavigationController {
 	public String deleteUser(){
 		return "unsubscribe.html";
 	}
+	
+	@RequestMapping (value="/myprofile", method = RequestMethod.GET)
+	public String myProfile(){
+		return "myprofile.html";
+	}
+
+	@RequestMapping (value="/account", method = RequestMethod.GET)
+	public String account(){
+		return "account.html";
+	}
+	
+	@RequestMapping (value="/addproduct", method = RequestMethod.GET)
+	public String addProduct(){
+		return "addproduct.html";
+	}
+	
+	@RequestMapping (value="/myproducts", method = RequestMethod.GET)
+	public String myProducts(){
+		return "myproducts.html";
+	}
 
 
 }

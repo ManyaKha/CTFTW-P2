@@ -23,7 +23,7 @@ public class UserController {
 		uUser.setCurrent(true);
 		restTemplate.put("http://localhost:18902/users/"+ uUser.getEmail(), uUser);
 		model.addAttribute("current", uUser);
-		return "myaccount.html";
+		return "index-loggedin.html";
 	}
 	
 	@RequestMapping (value = "login-user", method = RequestMethod.GET)
@@ -32,9 +32,9 @@ public class UserController {
 		if (user != null) {	
 			model.addAttribute("user", user);
 			setCurrentUser(model, user);
-			return "myaccount.html";
+			return "index-loggedin.html";
 		}
-		return "login.html";
+		return "index.html";
 	}
 	
 	@RequestMapping (value = "register-user", method = RequestMethod.POST)
@@ -43,7 +43,7 @@ public class UserController {
 		User user = restTemplate.postForObject("http://localhost:18902/users", uUser, User.class);
 		model.addAttribute("user", user);
 		setCurrentUser(model, user);
-		return "myaccount.html";
+		return "index-loggedin.html";
 	}
 	
 	@RequestMapping (value = "logout-user", method = RequestMethod.PUT)
@@ -58,7 +58,7 @@ public class UserController {
 		if (user != null) {
 			restTemplate.delete("http://localhost:18902/users/{email}", user.getEmail());
 		}
-		return "index";	
+		return "index.html";	
 	}
 	
 	

@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Unsubscribe</title>
+    <title>User profile</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla&display=swap" rel="stylesheet">
@@ -10,8 +10,8 @@
         <link rel="stylesheet" href="style/style.css">
   </head>
 
-  <body>
-        <div class="header-logged">
+<body>
+    <div class="header-logged">
 	  <header id= main_header>
 	      <a href="index-loggedin.html"><h1 id="logo">Second-Hand</h1></a>
 	      <div class=navbar_container>
@@ -27,14 +27,18 @@
 	</div>
 
       <div class="form-container">
-        <h1>Unsubscribe</h1>
-          <form class="form" th:action="@{/delete-user}" th:object="${user}" method="post">
-              <div> <label for="email">Email</label>
-                <br>
-               <input type="email" placeholder="Enter Email" name="email" id="email" required></div>
-
-              <div><input type="submit" value="Delete account" class="btn"/></div>
-          </form>
+        <h1>My Profile</h1>
+        
+        <div>
+        <p>Email: <span th:text="user.email">user email</span> </p>
+        <p>Name: <span th:text="user.name">user name</span> <span th:text="user.surname">user surname</span> </p>
+        </div>
+        
+        <div class="profile_buttons">
+        		<div  onclick="location.href='../addproduct'"><input type="submit" value="Add products" class="btn"></div>
+			<div  onclick="location.href='../myproducts'"><input type="submit" value="Manage products" class="btn"></div>
+			<div  onclick="location.href='../account'"><input type="submit" value="Update profile" class="btn"></div>
+		</div>
       </div>
 
 

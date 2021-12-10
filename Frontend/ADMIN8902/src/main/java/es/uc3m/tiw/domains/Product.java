@@ -6,6 +6,7 @@ import java.io.Serializable;
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	String id;
 	String title;
 	String owner;
 	String category;
@@ -16,13 +17,22 @@ public class Product implements Serializable {
 	public Product() {
 	}
 	
-	public Product(String title, String owner, String category, String description, int price, String status) {
+	public Product(String id, String title, String owner, String category, String description, int price, String status) {
+		this.id = id;
 		this.title = title;
 		this.owner = owner;
 		this.category = category;
 		this.description = description;
 		this.price = price;
 		this.status = status;
+	}
+	
+	public String getId() {
+		return this.id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	public String getTitle() {

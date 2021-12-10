@@ -26,13 +26,13 @@ public class ProductController {
 	
 	@RequestMapping(value = "/edit-product", method = RequestMethod.POST)
 	public String editProduct(Product product){
-		restTemplate.put(this.CATAL8902_URL+"/"+product.getOwner()+"/"+product.getTitle(), product);
+		restTemplate.put(this.CATAL8902_URL+"/"+product.getId(), product);
 		return "manageProducts.html";
 	}
 	
 	@RequestMapping(value = "/delete-product/", method = RequestMethod.POST)
-	public String deleteProduct(@PathVariable String owner, @PathVariable String title){
-		restTemplate.delete(this.CATAL8902_URL+"/"+owner+"/"+title);
+	public String deleteProduct(@PathVariable String id){
+		restTemplate.delete(this.CATAL8902_URL+"/"+id);
 		return "managaProducts.html";
 	}
 }

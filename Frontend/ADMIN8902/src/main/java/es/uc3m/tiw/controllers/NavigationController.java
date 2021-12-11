@@ -17,23 +17,27 @@ public class NavigationController {
 	String CURRENT_URL = "http://localhost:18902/users/current";
 	
 	@RequestMapping("/")
-	public String index() {
+	public String index(Model model) {
 		User current = restTemplate.getForObject(this.CURRENT_URL, User.class);
 		if (current == null) {
 			return "login.html";
 		} else if (!current.isAdministrator()) {
 			return "notAdminErrorPage.html";
 		} else {
-			return "index.html";
+			User[] users = restTemplate.getForObject("http://localhost:18902/users", User[].class);
+			model.addAttribute("users", users);
+			return "manageUsers.html";
 		}
 	}
 		
 	
 	@RequestMapping("/index")
-	public String showIndex() {
+	public String showIndex(Model model) {
 		User current = restTemplate.getForObject(this.CURRENT_URL, User.class);
 		if (current != null && current.isAdministrator()) {
-			return "index.html";
+			User[] users = restTemplate.getForObject("http://localhost:18902/users", User[].class);
+			model.addAttribute("users", users);
+			return "manageUsers.html";
 		} else {
 			return "login.html";
 		}

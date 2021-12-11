@@ -96,7 +96,21 @@ body {
  }
 
 /*------------------------Login page--------------------------------*/
+  .btn {
+    background-color:white;
+    border: 1px solid #13c1ac;
+    display:inline-block;
+    color:#13c1ac;
+    font-family: 'Readex Pro', sans-serif;
+    font-size:17px;
+    padding:15px 23px;
+    text-decoration:none;
+  }
 
+  .btn:hover {
+    background-color: #13c1ac;
+    color: white;
+  }
 
 .form-container {
     align-items: center;

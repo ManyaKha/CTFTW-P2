@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="style/style.css" />
   </head>
 
-  <body id="register_body">
+  <body id="register-body">
      <div class="form-container">
      	<h1>Second-Hand Administration</h1>
         <h2>Log in</h2>
-          <form class="form" th:action="@{/login-user}" method="get">
+          <form class="form" th:action="@{/login-user}" method="post">
               <div> <label for="email">Email</label>
                 <br>
                <input type="email" placeholder="Enter Email" name="email" required id="email"></div>

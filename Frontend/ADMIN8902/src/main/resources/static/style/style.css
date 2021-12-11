@@ -135,25 +135,38 @@ body {
     background-color: #ddd;
     outline: none;
   }
-
-
-
-  .btn {
-    background-color: #eceff1;
-    border: 1px solid #13c1ac;
-    display:inline-block;
-    color:#13c1ac;
-    font-family: 'Readex Pro', sans-serif;
-    font-size:17px;
-    padding:15px 23px;
-    text-decoration:none;
+  
+  .form-container h1 {
+  	color: #13c1ac;
   }
-
-  .btn:hover {
-    background-color: #13c1ac;
-    color: white;
+ 
+  .form-container .left {
+  	padding: 0 30px;
+  	text-align: left;
   }
-
+  
+  .form-container button {
+  	padding: 5px;
+  	width: 170px;
+  	height: 40px;
+  	border: 3px solid #13c1ac;
+  	border-radius: 2px;
+  }
+  
+ .form-container button:hover {
+	text-decoration:underline; 
+}
+  
+ #adminButton {
+  	color: white;
+  	background-color: #13c1ac;
+  }
+  
+  
+  
+#clientButton {
+  	color: #13c1ac;
+  }
 
   #create-user {
       align-items: center;
@@ -197,18 +210,17 @@ th {
 	text-align: right;
 }
 
-.description {
-	
-}
-
 /*------------------------User Management--------------------------------*/
 
 
 /* table displaying the users and for user management */
 table th i {
-    font-size: 13px;
     margin: 0 5px;
     cursor: pointer;
+}
+
+table th, table td {
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 table td {

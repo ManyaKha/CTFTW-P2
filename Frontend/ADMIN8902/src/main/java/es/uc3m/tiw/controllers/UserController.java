@@ -18,6 +18,7 @@ public class UserController {
 	@Autowired
 	RestTemplate restTemplate;
 	String CLIE8902_URL = "http://localhost:18902/users";
+	String CURRENT_URL = "http://localhost:18902/users/current";
 	
 	@RequestMapping(value = "/create-user", method = RequestMethod.POST)
 	public String createUser(Model model, @ModelAttribute User user) {
@@ -25,29 +26,47 @@ public class UserController {
 		return "login.html";
 	}
 	
-	@RequestMapping(value = "/login-user", method = RequestMethod.GET)
+	@RequestMapping(value = "/login-user", method = RequestMethod.POST)
 	public String loginUser(Model model, @RequestParam String email, @RequestParam String password) {
 		User user = restTemplate.getForObject(this.CLIE8902_URL+"/"+email+"/"+password, User.class);
-		
 		if (user == null || !user.isAdministrator()){
 			model.addAttribute("loginFailed", true);
 			return "login.html";
 		} else {
-			model.addAttribute("loginFailed", false);
+			user.setCurrent(true);
+			restTemplate.put("http://localhost:18902/users/"+ user.getEmail(), user);
 			return "index.html";
 		}
 	}
 	
+	@RequestMapping(value ="/logout-user", method = RequestMethod.GET)
+	public String logoutUser(){
+		User current = restTemplate.getForObject(this.CURRENT_URL, User.class);
+		current.setCurrent(false);
+		restTemplate.put(this.CLIE8902_URL + "/" + current.getEmail(), current);
+		return "login.html";
+	}
+	
 	@RequestMapping(value = "/manage-users", method = RequestMethod.GET)
 	public String showManageUsers(Model model) {
-		User[] users = restTemplate.getForObject(this.CLIE8902_URL, User[].class);
-		model.addAttribute("users", users);
-		return "manageUsers.html";
+		User current = restTemplate.getForObject(this.CURRENT_URL, User.class);
+		
+		if (current == null) {
+			return "login.html";
+		} else if (!current.isAdministrator()) {
+			return "notAdminErrorPage.html";
+		} else  {
+			User[] users = restTemplate.getForObject(this.CLIE8902_URL, User[].class);
+			model.addAttribute("users", users);
+			return "manageUsers.html";
+		}
 	}
 	
 	@RequestMapping(value = "/edit-user", method = RequestMethod.POST)
-	public String editUser(User user){
+	public String editUser(Model model, User user){
 		restTemplate.put(this.CLIE8902_URL+"/"+user.getEmail(), user);
+		User[] users = restTemplate.getForObject(this.CLIE8902_URL, User[].class);
+		model.addAttribute("users", users);
 		return "manageUsers.html";
 	}
 	

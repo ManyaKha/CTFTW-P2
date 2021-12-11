@@ -11,6 +11,7 @@ public class User implements Serializable {
 	private String surname;
 	private String city;
 	private boolean administrator;
+	private boolean current;
 	
 	public User() {
 	}
@@ -70,6 +71,12 @@ public class User implements Serializable {
 	public void setAdministrator(boolean administrator) {
 		this.administrator = administrator;
 	}
-	
-	
+
+	public boolean isCurrent() {
+		return current;
+	}
+
+	public void setCurrent(boolean current) {
+		this.current = current;
+	}
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+
+  <body id="register-body">
+     <div class="form-container">
+     	<h1>Second-Hand Administration</h1>
+        <h2> Oops! It seems that you are trying to access our administration page with 
+        a client user. </h2>
+        <p class = "left"> If you have an admin-account, click on <b><i>Go to 
+        administration log in</i></b>. This will log you out of your client-user and
+        redirect you to the administrator log in. <br /><br/>
+        If you have come here by mistake and want to go back to our website for
+        more second hand shopping, click <b><i>Go back to Second-Hand</i></b>.
+         </p>
+          <button id="adminButton" onclick="goToAdmin()">Go to Administrator log in</button>
+          <button id="clientButton" onclick="goToClient()">Go back to Second-Hand</button>
+      </div>
+      
+      <script src="script/navigation-admin-client.js"></script>
+  </body>
+</html>

@@ -327,7 +327,7 @@
   }
 
   /* input fields */
-  .form input[type=text], .form input[type=password], .form input[type=email] {
+  .form input[type=text], .form input[type=password], .form input[type=email], .form select {
     width: 500px;
     display: inline-block;
     padding: 15px;
@@ -337,7 +337,7 @@
   }
 
   /* When the inputs get focus, do something */
-  .form input[type=text]:focus, .form input[type=password]:focus, .form input[type=email]:focus {
+  .form input[type=text]:focus, .form input[type=password]:focus, .form input[type=email]:focus, .form select:focus, .form input[type=file]{
     background-color: #ddd;
     outline: none;
   }
@@ -447,4 +447,56 @@ float: right;
 #textarea:focus {
   background-color: #ddd;
   outline: none;
+}
+
+
+/*------------------------------Manage Products main page------------------------------ */
+#manage-prod-title {
+text-align: center;
+margin-top: 90px;
+}
+
+
+.btn-edit {
+  background-color:white;
+  border: 1px solid #13c1ac;
+  display:inline-block;
+  color:#13c1ac;
+  font-family: 'Readex Pro', sans-serif;
+  font-size:17px;
+  padding:15px 23px;
+  text-decoration:none;
+}
+
+.btn-edit:hover {
+  background-color: #13c1ac;
+  color: white;
+}
+
+/*------------------------------Manage Product------------------------------ */
+
+.btn-update, .btn-del {
+  background-color:white;
+  border: 1px solid #13c1ac;
+  display:inline-block;
+  color:#13c1ac;
+  font-family: 'Readex Pro', sans-serif;
+  font-size:17px;
+  padding:15px 23px;
+  text-decoration:none;
+}
+
+.btn-update:hover {
+  background-color: #13c1ac;
+  color: white;
+}
+
+.btn-del:hover {
+  background-color: #da1414;
+}
+
+.buttons-edit {
+  width: 100%;
+    display: flex;
+    justify-content: space-between;
 }

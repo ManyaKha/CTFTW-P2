@@ -11,6 +11,7 @@ CREATE TABLE USER (
 	`Surname` varchar(45) DEFAULT NULL,
 	`City` varchar(45) DEFAULT NULL,
 	`Administrator` boolean DEFAULT FALSE,
+	`Current` boolean DEFAULT FALSE,
 	PRIMARY KEY (Email)
 );
 

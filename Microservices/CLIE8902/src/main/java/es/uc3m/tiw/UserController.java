@@ -32,11 +32,9 @@ public class UserController {
 	@RequestMapping(value= "/users/current",method = RequestMethod.GET)
 	public @ResponseBody User getCurrentUsers(){
 		List<User> currentUsers = daouser.findCurrentUsers();
-		System.out.println(currentUsers);
 		if(currentUsers.isEmpty()) {
 			return null;
 		}
-		System.out.println(currentUsers);
 		return currentUsers.get(0);
 	}
 	

@@ -42,46 +42,61 @@ public class UserController {
 	}
 	
 	@RequestMapping (value="/login", method = RequestMethod.GET)
-	public String showLogin(Model model){
-		User c = getCurrentUser();
-		model.addAttribute("current", c);
+	public String showLogin(){
 		return "login.html";
 	}
 	
 	@RequestMapping (value="/myprofile", method = RequestMethod.GET)
 	public String myProfile(Model model){
 		User c = getCurrentUser();
-		model.addAttribute("current", c);
-		return "myprofile.html";
+		if(c!= null) {
+			model.addAttribute("current", c);
+			return "myprofile.html";
+		}
+		return "index.html";
+		
 	}
 	
 	@RequestMapping (value="/editprofile", method = RequestMethod.GET)
 	public String account(Model model){
 		User c = getCurrentUser();
-		model.addAttribute("current", c);
-		return "editprofile.html";
+		if(c!= null) {
+			model.addAttribute("current", c);
+			return "editprofile.html";
+		}
+		return "index.html";
 	}
 	
 	@RequestMapping (value="/deleteprofile", method = RequestMethod.GET)
 	public String deleteUser(Model model){
 		User c = getCurrentUser();
-		model.addAttribute("current", c);
-		return "deleteprofile.html";
+		if(c!= null) {
+			model.addAttribute("current", c);
+			return "deleteprofile.html";
+		}
+		return "index.html";
 	}
 	
 	
 	@RequestMapping (value="/addproduct", method = RequestMethod.GET)
 	public String addProduct(Model model){
 		User c = getCurrentUser();
-		model.addAttribute("current", c);
-		return "addproduct.html";
+		if(c!= null) {
+			model.addAttribute("current", c);
+			return "addproduct.html";
+			
+		}
+		return "index.html";
 	}
 	
 	@RequestMapping (value="/myproducts", method = RequestMethod.GET)
 	public String myProducts(Model model){
 		User c = getCurrentUser();
-		model.addAttribute("current", c);
-		return "myproducts.html";
+		if(c!= null) {
+			model.addAttribute("current", c);
+			return "myproducts.html";
+		}
+		return "index.html";
 	}
 	
 	

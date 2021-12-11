@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>User profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="style/style.css">
+  </head>
+
+<body>
+    <div class="header-logged">
+	  <header id= main_header>
+	      <a href="loggedin"><h1 id="logo">Second-Hand</h1></a>
+	      <div class=navbar_container>
+	        <div class="menu_options">
+	          <a href="#">About Us</a>
+	          <a href="#">Contact Us</a>
+	        </div>
+	        <div class="buttons" id="buttons">
+        		<button type="submit" class="login_button" onclick="location.href='../myprofile'">My profile</button>
+        		<button type="submit" class="login_button" onclick="th:action='@{/logout-user}'">Log Out</button>
+        	</div>
+	    </header>
+	</div>
+
+      <div class="form-container">
+        <h1>My Profile</h1>
+        
+        <div>
+        <p>Email: <span th:text="${current.email}">user email</span> </p>
+        <p>Name: <span th:text="${current.name}">user name</span> <span th:text="${current.surname}">user surname</span> </p>
+        </div>
+        
+        <div class="profile_buttons">
+        		<div  onclick="location.href='../addproduct'"><input type="submit" value="Add products" class="btn"></div>
+			<div  onclick="location.href='../myproducts'"><input type="submit" value="Manage products" class="btn"></div>
+			<div  onclick="location.href='../editprofile'"><input type="submit" value="Update profile" class="btn"></div>
+		</div>
+      </div>
+
+
+      <footer>
+        <div class="footer_small">
+          <div class="content_left">
+            <h1 id="logo_footer">Second-Hand</h1>
+          </div>
+          <div class="content_middle">
+            <a href="link">FAQ</a>
+            <a href="link">Privacy Policy</a>
+          </div>
+        </div>
+
+        <div class="content_right">
+          <div>
+            <h4>Follow us!</h4>
+          </div>
+          <div>
+              <a href="#" class="fa fa-facebook"></a>
+              <a href="#" class="fa fa-instagram"></a>
+          </div>
+        </div>
+      </footer>
+  </body>
+</html>

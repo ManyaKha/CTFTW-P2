@@ -11,17 +11,20 @@
   </head>
 
   <body>
-    <header id= main_header>
-        <a href="/"> <h1 id="logo">Second-Hand</h1> </a>
-        <div class=navbar_container>
-          <div class="menu_options">
-            <a href="#">About Us</a>
-            <a href="#">Contact Us</a>
-          </div>
-          <div class="buttons" id="buttons">
-            <button type="button" class="login_button" >Login</button>
-          </div>
-      </header>
+    <div class="header-logged">
+	  <header id= main_header>
+	      <a href="index-loggedin.html"> <h1 id="logo">Second-Hand</h1> </a>
+	      <div class=navbar_container>
+	        <div class="menu_options">
+	          <a href="#">About Us</a>
+	          <a href="#">Contact Us</a>
+	        </div>
+	        <div class="buttons" id="buttons">
+	          		<button type="button" class="login_button" onclick="location.href='../myprofile'">My profile</button>
+	          		<button type="button" class="login_button">Log Out</button>
+	        	</div>
+	    </header>
+	</div>
 
       <div class="form-container">
         <h1>Add Product</h1>

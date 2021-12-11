@@ -16,6 +16,8 @@ public class UserController {
 	
 	@Autowired
 	RestTemplate restTemplate;
+	String CLIE8902_URL = "http://localhost:18902/users";
+	String CURRENT_URL = "http://localhost:18902/users/current";
 
 	//Navigation
 	
@@ -102,9 +104,14 @@ public class UserController {
 	
 
 	
-	//
+	@RequestMapping (value = "/get-current-user", method = RequestMethod.GET)
+	public User getCurrentUser() {
+		User user = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
+		return user;
+	}
+
 	
-	@RequestMapping (value = "set-current-user", method = RequestMethod.PUT)
+	@RequestMapping (value = "/set-current-user", method = RequestMethod.PUT)
 	public String setCurrentUser(Model model, @ModelAttribute User uUser) {
 		uUser.setCurrent(true);
 		restTemplate.put("http://localhost:18902/users/"+ uUser.getEmail(), uUser);
@@ -112,13 +119,8 @@ public class UserController {
 		return "index-loggedin.html";
 	}
 	
-	@RequestMapping (value = "get-current-user", method = RequestMethod.GET)
-	public User getCurrentUser() {
-		User user = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
-		return user;
-	}
-
-	@RequestMapping (value = "login-user", method = RequestMethod.GET)
+	
+	@RequestMapping (value = "/login-user", method = RequestMethod.GET)
 	public String loginUser(Model model, @RequestParam String email, @RequestParam String password) {
 		User user = restTemplate.getForObject("http://localhost:18902/users/{email}/{password}", User.class, email, password);
 		if (user != null) {	
@@ -129,7 +131,7 @@ public class UserController {
 		return "index.html";
 	}
 	
-	@RequestMapping (value = "register-user", method = RequestMethod.POST)
+	@RequestMapping (value = "/register-user", method = RequestMethod.POST)
 	public String createUser(Model model, @ModelAttribute User uUser) {
 		uUser.setCurrent(true);
 		User user = restTemplate.postForObject("http://localhost:18902/users", uUser, User.class);
@@ -138,16 +140,16 @@ public class UserController {
 		return "index-loggedin.html";
 	}
 	
-	@RequestMapping (value = "logout-user", method = RequestMethod.PUT)
-	public String logoutUser(Model model, @ModelAttribute User uUser){
-		User u = getCurrentUser();
-		u.setCurrent(false);
-		restTemplate.put("http://localhost:18902/users/"+ u.getEmail(), uUser);
-		return "index.html";	
+	@RequestMapping (value = "/logout-user", method = RequestMethod.GET)
+	public String logoutUser(){
+		User c = getCurrentUser();
+		c.setCurrent(false);
+		restTemplate.put(this.CLIE8902_URL + "/" + c.getEmail(), c);
+		return "index.html";
 	}
 	
 	
-	@RequestMapping (value = "delete-user", method = RequestMethod.POST)
+	@RequestMapping (value = "/delete-user", method = RequestMethod.POST)
 	public String deleteUser(Model model, @RequestParam String email){
 		User user = restTemplate.getForObject("http://localhost:18902/users/{email}", User.class, email);
 		if (user != null) {
@@ -156,7 +158,7 @@ public class UserController {
 		return "index.html";	
 	}
 	
-	@RequestMapping (value = "update-user", method = RequestMethod.POST)
+	@RequestMapping (value = "/update-user", method = RequestMethod.POST)
 	public String updateUser(Model model, @ModelAttribute User uUser){
 		User u = getCurrentUser();
 		User user = restTemplate.getForObject("http://localhost:18902/users/"+ u.getEmail(), User.class, uUser);

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 
 import es.uc3m.tiw.domains.Product;
+import es.uc3m.tiw.domains.User;
 
 @Controller
 public class ProductController {
@@ -16,12 +17,21 @@ public class ProductController {
 	@Autowired
 	RestTemplate restTemplate;
 	String CATAL8902_URL = "http://localhost:18903/products";
+	String CURRENT_URL = "http://localhost:18902/users/current";
+
 	
 	@RequestMapping(value="/manage-products", method = RequestMethod.GET)
 	public String showManageProducts(Model model){
-		Product[] products = restTemplate.getForObject(this.CATAL8902_URL, Product[].class);
-		model.addAttribute("products", products);
-		return "manageProducts.html";
+		User current = restTemplate.getForObject(this.CURRENT_URL, User.class);
+		if (current == null) {
+			return "login.html";
+		} else if (!current.isAdministrator()) {
+			return "notAdminErrorPage.html";
+		} else {
+			Product[] products = restTemplate.getForObject(this.CATAL8902_URL, Product[].class);
+			model.addAttribute("products", products);
+			return "manageProducts.html";
+		}
 	}
 	
 	@RequestMapping(value = "/edit-product", method = RequestMethod.POST)

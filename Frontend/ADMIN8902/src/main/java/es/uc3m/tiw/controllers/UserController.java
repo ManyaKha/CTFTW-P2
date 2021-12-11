@@ -35,6 +35,8 @@ public class UserController {
 		} else {
 			user.setCurrent(true);
 			restTemplate.put("http://localhost:18902/users/"+ user.getEmail(), user);
+			User[] users = restTemplate.getForObject("http://localhost:18902/users", User[].class);
+			model.addAttribute("users", users);
 			return "manageUsers.html";
 		}
 	}

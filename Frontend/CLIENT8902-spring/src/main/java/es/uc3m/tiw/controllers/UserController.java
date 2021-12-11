@@ -139,7 +139,7 @@ public class UserController {
 	}
 	
 	@RequestMapping (value = "logout-user", method = RequestMethod.PUT)
-	public String logoutUser(Model model){
+	public String logoutUser(){
 		User u = getCurrentUser();
 		u.setCurrent(false);
 		restTemplate.put("http://localhost:18902/users/"+ u.getEmail(), User.class);

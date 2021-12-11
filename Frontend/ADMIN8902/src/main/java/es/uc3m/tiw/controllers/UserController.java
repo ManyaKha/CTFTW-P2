@@ -35,7 +35,7 @@ public class UserController {
 		} else {
 			user.setCurrent(true);
 			restTemplate.put("http://localhost:18902/users/"+ user.getEmail(), user);
-			return "index.html";
+			return "manageUsers.html";
 		}
 	}
 	

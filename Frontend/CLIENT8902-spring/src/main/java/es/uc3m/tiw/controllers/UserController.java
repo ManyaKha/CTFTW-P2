@@ -20,12 +20,19 @@ public class UserController {
 	//Navigation
 	
 	@RequestMapping("/")	
-	public String index(){
+	public String index(Model model){
+		User c = getCurrentUser();
+		if(c != null) {
+			model.addAttribute("current", c);
+			return "index-loggedin";
+		}
 		return "index";
 	}
 	
 	@RequestMapping("/loggedin")	
-	public String index_loggedin(){
+	public String index_loggedin(Model model) {
+		User c = getCurrentUser();
+		model.addAttribute("current", c);
 		return "index-loggedin";
 	}
 	
@@ -35,7 +42,9 @@ public class UserController {
 	}
 	
 	@RequestMapping (value="/login", method = RequestMethod.GET)
-	public String showLogin(){
+	public String showLogin(Model model){
+		User c = getCurrentUser();
+		model.addAttribute("current", c);
 		return "login.html";
 	}
 	
@@ -62,12 +71,16 @@ public class UserController {
 	
 	
 	@RequestMapping (value="/addproduct", method = RequestMethod.GET)
-	public String addProduct(){
+	public String addProduct(Model model){
+		User c = getCurrentUser();
+		model.addAttribute("current", c);
 		return "addproduct.html";
 	}
 	
 	@RequestMapping (value="/myproducts", method = RequestMethod.GET)
-	public String myProducts(){
+	public String myProducts(Model model){
+		User c = getCurrentUser();
+		model.addAttribute("current", c);
 		return "myproducts.html";
 	}
 	
@@ -110,12 +123,14 @@ public class UserController {
 		return "index-loggedin.html";
 	}
 	
-	@RequestMapping (value = "logout-user", method = RequestMethod.POST)
-	public String logoutUser(Model model, @ModelAttribute User uUser){
+	@RequestMapping (value = "logout-user", method = RequestMethod.PUT)
+	public String logoutUser(Model model){
 		User u = getCurrentUser();
 		u.setCurrent(false);
-		return "index.html";
+		restTemplate.put("http://localhost:18902/users/"+ u.getEmail(), User.class);
+		return "index.html";	
 	}
+	
 	
 	@RequestMapping (value = "delete-user", method = RequestMethod.POST)
 	public String deleteUser(Model model, @RequestParam String email){

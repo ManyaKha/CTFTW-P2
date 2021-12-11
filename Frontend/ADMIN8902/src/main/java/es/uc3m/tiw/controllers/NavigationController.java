@@ -49,7 +49,7 @@ public class NavigationController {
 		if (current == null) {
 			return "register.html";
 		} else if (current.isAdministrator()) {
-			return "index.html";
+			return "manageUsers.html";
 		} else {
 			return "notAdminErrorPage.html";
 		}
@@ -59,9 +59,9 @@ public class NavigationController {
 	public String showLogin(Model model) {
 		User current = restTemplate.getForObject(this.CURRENT_URL, User.class);
 		if (current == null) {
-			return "register.html";
+			return "login.html";
 		} else if (current.isAdministrator()) {
-			return "index.html";
+			return "manageUsers.html";
 		} else {
 			return "notAdminErrorPage.html";
 		}

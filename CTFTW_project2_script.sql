@@ -24,8 +24,7 @@ CREATE TABLE PRODUCT (
 	`Image` longblob DEFAULT NULL,
 	`Price` float(45) NOT NULL,
 	`Status` varchar(45) NOT NULL,
-	PRIMARY KEY (Id),
-	FOREIGN KEY (Owner) REFERENCES USER(email)
+	PRIMARY KEY (Id)
 );
 
 INSERT INTO `User` (Email, Password, Name, Surname, City, Administrator) VALUES ('lois.hull@gmail.com', 'password', 'Lois', 'Hull', 'Madrid', true);

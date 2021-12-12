@@ -75,8 +75,10 @@ public class ProductController {
 	/*Search Product- Quick Search*/
 	@RequestMapping (value = "searchProduct", method = RequestMethod.POST)
 	public String searchUsuarios(Model model, @RequestParam Product product) {
-		Product searchProduct = restTemplate.getForObject("http://localhost:18903/products/{title}", Product.class, product);
-		model.addAttribute("product", searchProduct);
+		Product[] searchProduct = restTemplate.getForObject("http://localhost:18903/products/{title}", Product[].class, product);
+		product.setTitle("Product1");
+		model.addAttribute("searchProduct", searchProduct);
+		model.addAttribute("product", product);
 		return "index";	
 	}
 	

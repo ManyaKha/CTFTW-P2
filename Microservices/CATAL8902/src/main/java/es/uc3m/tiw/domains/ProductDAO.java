@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 public interface ProductDAO extends CrudRepository<Product,Long>{
 
 	public List<Product> findAll();
-	@Query(value= "select * from product p where p.title like %title%", nativeQuery=true)
+	@Query(value= "select * from product p where p.title like %?1%", nativeQuery=true)
 	public List<Product> findByTitle(String title);
 	public List<Product> findByCategory(String category);
 	public List<Product> findByOwner(String owner);

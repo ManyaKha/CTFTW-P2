@@ -34,7 +34,8 @@
           <div class="search_area" th:action="@{/}">
               <h1 class="title">Search</h1>
               <div class="search">
-                <input id=keyword type="text" placeholder="Search..." name="search" th:value=${keyword}>
+              <form>
+              <input id=keyword type="text" placeholder="Search..." name="searchProduct" th:value=${searchProduct}>
                 <button type="submit">Quick Search</button>
                 <button type="submit">Advanced Search</button>
                 <script type="text/javascript">
@@ -42,14 +43,22 @@
 				        window.location = "[[@{/}]]";
 				    }
 				</script>
+              </form>
+              <div class="searchResults" th:each="product : ${searchProduct}">
+                  <h3 class="title" th:text="${product.title}"></h3>
+                  <p class="category"><span th:text="${product.category}">default category</span></p>
+                  <p class="price"><span th:text="${product.price}">default price</span></p>
+              </div>
+                
               </div>
             </div>
+
+          <section class="products" th:each="product : ${productList}">
           <h1>Latest Products</h1>
-          <section class="products">
 
           <div id = "gallery" class="image_gallery">
               
-             <img class= "image" src="images/chair.jpg" alt=""  th:each="product : ${productList}">
+             <img class= "image" src="images/chair.jpg" alt="" >
               <div class="description-container" >
                   <h3 class="title" th:text="${product.Title}"></h3>
                   <p class="category"><span th:text="${product.Category}">default category</span></p>

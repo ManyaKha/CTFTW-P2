@@ -39,7 +39,7 @@ public class CatalogController {
 	   return daoproduct.findAll();
    }
    
-
+	
    /*Search Product by Owner*/
    @RequestMapping(value= "/products/users/{owner}",method = RequestMethod.GET)
    public @ResponseBody List<Product> getProductsByOwner(@PathVariable @Validated String owner){

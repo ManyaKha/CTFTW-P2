@@ -23,10 +23,9 @@
               <div ><label for="password">Password</label>
                 <br>
               <input type="password" placeholder="Enter Password" name="password" required id="password"></div>
-
               <div><input type="submit" value="Log in" class="btn"/></div>
-
           </form>
+          <p class="error-message" th:if="${loginFailed}">Incorrect email or password. Try again.</p>
           <div id="create-user">
              <p>Don't have an Account?</p> <a href="../register">Sign up</a>
           </div>

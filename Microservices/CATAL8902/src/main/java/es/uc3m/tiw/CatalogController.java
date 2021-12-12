@@ -22,6 +22,8 @@ public class CatalogController {
 	ProductDAO daoproduct;
 	
    
+	
+	
    /*View all Products*/
    @RequestMapping(value= "/products",method = RequestMethod.GET)
 	public @ResponseBody List<Product> getAllProducts(){
@@ -31,9 +33,13 @@ public class CatalogController {
    /*Search Product by Title*/
    @RequestMapping(value= "/products/{title}",method = RequestMethod.GET)
    public @ResponseBody List<Product> getProductsByTitle(@PathVariable @Validated String title){
-		return daoproduct.findByTitle(title);
+	   if(title != null) {
+		 return daoproduct.findByTitle(title);
+	   }
+	   return daoproduct.findAll();
    }
-	
+   
+
    /*Search Product by Owner*/
    @RequestMapping(value= "/products/users/{owner}",method = RequestMethod.GET)
    public @ResponseBody List<Product> getProductsByOwner(@PathVariable @Validated String owner){
@@ -60,7 +66,7 @@ public class CatalogController {
    }
    
    /*Create New Product*/
-	@RequestMapping(method = RequestMethod.POST, value="/products")
+	@RequestMapping(method = RequestMethod.POST, value="/products/createProduct")
 	public @ResponseBody Product createNewProduct(@RequestBody @Validated Product sProduct) {
 		return daoproduct.save(sProduct);
 	}

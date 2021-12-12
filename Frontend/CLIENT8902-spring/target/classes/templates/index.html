@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <title>Second-Hand Shop | Home</title>
@@ -31,52 +31,31 @@
           </div>
 
 
-          <div class="search_area">
+          <div class="search_area" th:action="@{/}">
               <h1 class="title">Search</h1>
               <div class="search">
-                <input id=search type="text" placeholder="Search..." name="search" >
+                <input id=keyword type="text" placeholder="Search..." name="search" th:value=${keyword}>
                 <button type="submit">Quick Search</button>
                 <button type="submit">Advanced Search</button>
+                <script type="text/javascript">
+				    function clearSearch() {
+				        window.location = "[[@{/}]]";
+				    }
+				</script>
               </div>
             </div>
-
-          <section class="products">
           <h1>Latest Products</h1>
+          <section class="products">
 
           <div id = "gallery" class="image_gallery">
-
-            <div class="image-container" >
-             <img class= "image" src="images/chair.jpg" alt="" >
-              <div class="description-container">
-                  <h3 class="title" >Product1</h3>
-                  <p class="category">category</p>
-                  <p class="description">description</p>
-                  <p class="price">price</p>
+              
+             <img class= "image" src="images/chair.jpg" alt=""  th:each="product : ${productList}">
+              <div class="description-container" >
+                  <h3 class="title" th:text="${product.Title}"></h3>
+                  <p class="category"><span th:text="${product.Category}">default category</span></p>
+                  <p class="price"><span th:text="${product.Price}">default price</span></p>
               </div>
             </div>
-
-
-            <div class="image-container" >
-             <img class= "image" src="images/bed.jpg" alt="" >
-              <div class="description-container">
-                  <h3 class="title" >Product1</h3>
-                  <p class="category">category</p>
-                  <p class="description">description</p>
-                  <p class="price">price</p>
-              </div>
-            </div>
-
-
-             <div class="image-container" >
-              <img class= "image" src="images/chair.jpg" alt="">
-               <div class="description-container">
-                   <h3 class="title" >Product1</h3>
-                   <p class="category">category</p>
-                   <p class="description">description</p>
-                   <p class="price">price</p>
-               </div>
-             </div>
-          </div>
 
         </section>
 

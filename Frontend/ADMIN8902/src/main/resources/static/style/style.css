@@ -94,6 +94,10 @@ body {
   white-space: nowrap;
   font-family: 'Readex Pro', sans-serif;
  }
+ 
+ #login-error-message {
+ 	color: red;
+ }
 
 /*------------------------Login page--------------------------------*/
   .btn {
@@ -111,6 +115,7 @@ body {
     background-color: #13c1ac;
     color: white;
   }
+
 
 .form-container {
     align-items: center;
@@ -170,6 +175,17 @@ body {
  .form-container button:hover {
 	text-decoration:underline; 
 }
+
+p#login-error-message {
+	color: red;
+	background-color: purple;
+}
+
+.from #login-error-message {
+	font: 20px;
+}
+
+
   
  #adminButton {
   	color: white;

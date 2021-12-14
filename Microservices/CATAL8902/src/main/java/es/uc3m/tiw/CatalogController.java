@@ -48,10 +48,10 @@ public class CatalogController {
 		return daoproduct.findByOwner(owner);
    }
    
-   /*Search Product by Title and Owner*/
-   @RequestMapping(value= "/products/{title}/{owner}",method = RequestMethod.GET)
-   public @ResponseBody Product getProductsByTitleAndOwner(String productId){
-		return daoproduct.findById(productId);
+   /*Search Product by Id*/
+   @RequestMapping(value= "/product/{id}",method = RequestMethod.GET)
+   public @ResponseBody Product getProductsId(@PathVariable @Validated String id){
+		return daoproduct.findById(id);
    }
    
    /*Search Product by Category*/

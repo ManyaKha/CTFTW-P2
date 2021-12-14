@@ -1,6 +1,11 @@
 package es.uc3m.tiw.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,9 +13,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
+import es.uc3m.tiw.domains.CreditCard;
+import es.uc3m.tiw.domains.Payment;
 import es.uc3m.tiw.domains.Product;
+import es.uc3m.tiw.domains.Transaction;
+import es.uc3m.tiw.domains.User;
 
 @Controller
 public class ProductController {
@@ -81,5 +92,57 @@ public class ProductController {
 		model.addAttribute("product", product);
 		return "index";	
 	}
+	
+	@RequestMapping (value = "product/{id}", method = RequestMethod.GET)
+	public String showProduct(Model model, @PathVariable String id) {
+		Product product = restTemplate.getForObject("http://localhost:18903/product/"+id, Product.class);
+		model.addAttribute("product", product);
+		return "product.html";	
+	}
+	
+	@RequestMapping (value="buy-product/{id}", method = RequestMethod.POST)
+	public String buyProduct(Model model, @PathVariable String id, 
+			@RequestParam String cardNumber,
+			@RequestParam String month,
+			@RequestParam String year,
+			@RequestParam String cv2) {
+		
+		Product product = restTemplate.getForObject("http://localhost:18903/product/"+id, Product.class);
+		CreditCard card = new CreditCard(cardNumber, year+"-"+month, cv2);
+		Payment payment = new Payment(product.getPrice(), card);		
+		try {
+			ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:18901/payment", payment, String.class);
+				Transaction transaction = new Transaction();
+				transaction.setTransactionId(response.getBody());
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				
+				transaction.setTimeOfTransaction(sdf.format(new Date()));
+				transaction.setProductName(product.getTitle());
+				transaction.setPrice(product.getPrice());
+				transaction.setSeller(product.getOwner());
+				
+				User current = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
+				transaction.setBuyer(current.getEmail());
+				
+				restTemplate.postForObject("http://localhost:18904/transactions", transaction, void.class);
+				model.addAttribute("success", true); 
+				
+				product.setStatus("sold");
+				restTemplate.put("http://localhost:18903/products/"+product.getId(), product);
+				
+				model.addAttribute("product", product);
+
+				
+				return "product.html";
+	    } catch(HttpStatusCodeException e) {
+	    	System.out.println(e.getStatusCode()+": "+e.getResponseBodyAsString());
+	    	model.addAttribute("failed", true);
+			model.addAttribute("product", product);
+	        return "product.html";
+	    }
+	}
+
+	
 	
 }

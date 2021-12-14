@@ -8,7 +8,7 @@ public class Card {
 	
 	private String cardNumber;
 	
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM")
 	private Date expirationDate;
 	private int cv2;
 	

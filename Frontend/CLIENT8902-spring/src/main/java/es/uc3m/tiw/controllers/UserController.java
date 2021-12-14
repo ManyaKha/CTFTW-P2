@@ -89,9 +89,7 @@ public class UserController {
 		if(c!= null) {
 			model.addAttribute("current", c);
 			return "addproduct.html";
-			
 		}
-		  
 		return "index.html";
 	}
 	

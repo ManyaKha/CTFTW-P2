@@ -18,6 +18,7 @@ public class Product implements Serializable {
 	String owner;
 	String category;
 	String description;
+	String image;
 	float price;
 	String status;
 	
@@ -76,6 +77,14 @@ public class Product implements Serializable {
 		this.description = description;
 	}
 
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	public float getPrice() {
 		return this.price;

@@ -68,7 +68,7 @@ public class CatalogController {
    }
    
    /*Create New Product*/
-	@RequestMapping(method = RequestMethod.POST, value="/products/createProduct")
+	@RequestMapping(method = RequestMethod.POST, value="/products")
 	public @ResponseBody Product createNewProduct(@RequestBody @Validated Product sProduct) {
 		return daoproduct.save(sProduct);
 	}

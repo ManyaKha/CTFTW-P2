@@ -61,13 +61,15 @@ public class ProductController {
 		return "allproducts.html";	
 	}
 	
-	
 	/*Create New Product*/
-	@RequestMapping (value = "addProduct", method = RequestMethod.POST)
+	@RequestMapping (value = "/add-product", method = RequestMethod.POST)
 	public String addProduct(Model model, @ModelAttribute Product product) {
-	   Product newProduct = restTemplate.postForObject("http://localhost:18903/products/createProduct", product, Product.class);
+	   Product newProduct = restTemplate.postForObject("http://localhost:18903/products", product, Product.class);
+	   System.out.println(newProduct);
+	   User user = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
 	   model.addAttribute("product", newProduct);
-	   return "index";
+	   model.addAttribute("user", user);
+	   return "index.html";
     }
    
 	/*Delete existing product*/

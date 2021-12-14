@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	
+	String id;
 	String title;
 
 	String owner;
@@ -20,13 +20,23 @@ public class Product implements Serializable {
 		
 	}
 	
-	public Product(String title, String owner, String category, int price, String status) {
+	public Product(String id, String title, String owner, String category, int price, String status) {
 		super();
+		this.id=id;
 		this.title=title;
 		this.owner=owner;
 		this.category=category;
 		this.price=price;
 		this.status=status;
+	}
+
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getTitle() {

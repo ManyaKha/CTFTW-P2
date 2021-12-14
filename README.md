@@ -18,6 +18,6 @@ Project 2 for the subject Computer Technology for the Web
 * Home, office and garden
 * Home appliances
 * Movies, books and music
-* Children and babies
+* For childeren and babies
 * Collectables
 * Other

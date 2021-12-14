@@ -71,26 +71,6 @@ public class ProductController {
 	   model.addAttribute("user", user);
 	   return "index.html";
     }
-   
-	/*Delete existing product*/
-	@RequestMapping (value = "/delete-product", method = RequestMethod.POST)
-	public String deleteProduct(Model model, @RequestParam Product product){
-		Product delProduct = restTemplate.getForObject("http://localhost:18903/products/{owner}/{title}", Product.class, product);
-		if (delProduct != null) {
-			restTemplate.delete("http://localhost:18903/products/{owner}/{title}", delProduct.getOwner(), delProduct.getTitle());
-		}
-		return "index";	
-	}
-
-	/*Update existing product*/
-	@RequestMapping (value = "/update-product", method = RequestMethod.POST)
-	public String updateProduct(Model model, @ModelAttribute Product product){
-		Product updateProduct = restTemplate.getForObject("http://localhost:18903/products/{owner}/{title}", Product.class, product);
-		if(updateProduct !=null) {
-			restTemplate.put("http://localhost:18903/products/{owner}/{title}", updateProduct.getOwner(), updateProduct.getTitle());			
-		}
-		return "index";	
-	}
 	
 	/*Get all products by user*/
 	@RequestMapping (value = "/myproducts", method = RequestMethod.GET)
@@ -105,6 +85,28 @@ public class ProductController {
 		
 		return "index.html";
 	}
+   
+	/*Delete existing product*/
+	@RequestMapping (value = "/delete-product", method = RequestMethod.POST)
+	public String deleteProduct(Model model, @ModelAttribute Product product){
+		Product delProduct = restTemplate.getForObject("http://localhost:18903/products/"+product.getId(), Product.class, product);
+		if (delProduct != null) {
+			restTemplate.delete("http://localhost:18903/products/"+delProduct.getId());
+		}
+		return "index";	
+	}
+
+	/*Update existing product*/
+	@RequestMapping (value = "/update-product", method = RequestMethod.POST)
+	public String updateProduct(Model model, @ModelAttribute Product product){
+		Product updateProduct = restTemplate.getForObject("http://localhost:18903/products/"+product.getId(), Product.class, product);
+		if(updateProduct !=null) {
+			restTemplate.put("http://localhost:18903/products/{owner}/{title}", updateProduct.getOwner(), updateProduct.getTitle());			
+		}
+		return "index";	
+	}
+	
+	
 	
 	
 

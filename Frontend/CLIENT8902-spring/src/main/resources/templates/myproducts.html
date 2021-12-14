@@ -35,9 +35,16 @@
 		             <img class= "image" src="${product.image}" alt="Product image" >
 		              <div class="description-container" >
 		                  <h3 class="title" th:text="${product.title}"></h3>
+		                  <p class="id"><span id="id" th:text="${product.id}">default category</span></p>
 		                  <p class="category"><span th:text="${product.category}">default category</span></p>
 		                  <p class="price">€<span th:text="${product.price}">default price</span></p>
+		              	
 		              </div>
+		              
+		               
+		             <button onclick="location.href='../deleteproduct'">Delete product</button>
+		              <button onclick="location.href='../editproduct'">Change product status</button>
+		             
 		        </div>
 	        </section>
    
@@ -67,5 +74,7 @@
           </div>
         </div>
       </footer>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="script/script.js"></script>
   </body>
 </html>

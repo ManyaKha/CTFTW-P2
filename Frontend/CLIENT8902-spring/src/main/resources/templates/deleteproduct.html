@@ -30,14 +30,14 @@
 
 
       <div class="form-container">
-        <h1>Delete profile</h1>
-          <form class="form" th:action="@{/delete-user}" th:object="${current}" method="post">
+        <h1>Delete product</h1>
+          <form class="form" th:action="@{/delete-product}" th:object="${product}" method="post">
               <div> 
-              	<label for="email">Email</label>
-              	<input type="email" name="email" id="email" th:value="${current.email}" required>
+              	<label for="id">Product id</label>
+              	<input type="text" name="id" id="id" required>
               </div>
 
-              <input type="submit" value="Delete account" class="btn"/>
+              <input type="submit" value="Delete product" class="btn"/>
 
           </form>
       </div>

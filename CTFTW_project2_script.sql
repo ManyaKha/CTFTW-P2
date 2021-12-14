@@ -58,3 +58,4 @@ INSERT INTO `Product` (Id, Title, Owner, Category, Description, Image, Price, St
 'Pacific Pass Tienda de campaña resistente al agua portátil con sobretecho. Original price was 39 from amazon.', 
 "https://m.media-amazon.com/images/I/714ebKVsLpL._AC_SL1500_.jpg", 25, "available");
 
+

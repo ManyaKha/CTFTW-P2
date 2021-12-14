@@ -46,8 +46,8 @@ public class ProductController {
 		return "allproducts.html";	
 	}
 	
-	/*Search product - Advanced Search*/
-	@RequestMapping (value = "search-advanced", method = RequestMethod.GET)
+	/*Search product - Search by category*/
+	@RequestMapping (value = "search-category", method = RequestMethod.GET)
 	public String advanceSearchProducts(Model model, @RequestParam String category) {
 		Product[] searchResults = restTemplate.getForObject("http://localhost:18903/products/category/{category}", Product[].class, category);
 		User user = restTemplate.getForObject("http://localhost:18902/users/current", User.class);

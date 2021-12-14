@@ -26,28 +26,51 @@
         	</div>
       </header>
 
-       <div class="search_area">
-	       <h1 class="title">Search</h1>
-	       <div class="search" >
-	       
-	       <form th:action="@{/search-product}">
-	       		<input id=keyword type="text" placeholder="Search..." name="search" th:value=${keyword}>
-             	<button type="submit">Search</button>
-             	<button type="submit">Advanced Search</button>
-             	
-	            
-           </form>
-           
+       <div class="search_area" >
+              <h1 class="title">Search</h1>
+              <div class="search">
+              
+              <form th:action="@{/search}" method="get">
+              	<input id=keyword type="text" placeholder="Search..." name="keyword" th:value=${keyword}>
+                <button type="submit">Quick Search</button>
+              </form>
+              
+              <button id="advanced_btn">Advanced Search</button>
+              <form th:action="@{/search-advanced}" method="get">              
+               
+               <div id="advanced_search" style="display:none; ">
+	  
+		            <select id="category" name="category">
+		             <option value="" selected disabled hidden>Search by category</option>
+		              <option value="Cars and Motorcycles">Cars and Motorcycles</option>
+		              <option value="Clothing, accessories and make-up">Clothing, accessories and make-up</option>
+		              <option value="Electronics">Electronics</option>
+		              <option value="Sports and Outdoor equipment">Sports and Outdoor equipment</option>
+		              <option value="Consoles and Video games">Consoles and Video games</option>
+		              <option value="Bikes">Bikes</option>
+		              <option value="Home, office and garden">Home, office and garden</option>
+		              <option value="Home appliances">Home appliances</option>
+		              <option value="Movies, books and music">Movies, books and music</option>
+		              <option value="For childeren and babies">For childeren and babies</option>
+		              <option value="Collectables">Collectables</option>
+		              <option value="Other">Other</option>
+		            </select>
+
+		          <button type=submit>Search by category</button>
+	          	</div>
+	          	
+                </form>
+                
+              </div>
+            </div>
+            
            <div class="searchResults" th:each="product : ${searchResults}">
                <h3 class="title" th:text="${product.title}"></h3>
                <p class="category"><span th:text="${product.category}">default category</span></p>
                <p class="price"><span th:text="${product.price}">default price</span></p>
            </div>
              
-           </div>
-         </div>
-
-
+   
           <footer>
             <div class="footer_small">
               <div class="content_left">
@@ -69,5 +92,7 @@
               </div>
             </div>
           </footer>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+          <script src="script/script.js"></script>
   </body>
 </html>

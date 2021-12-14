@@ -79,9 +79,9 @@ public class ProductController {
 	public String getAllProductsByUser(Model model) {
 		User user = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
 		if (user != null) {
-			Product[] userProductList = restTemplate
+			Product[] products = restTemplate
 					.getForObject("http://localhost:18903/products/users/" + user.getEmail(), Product[].class);
-			model.addAttribute("userProductList", userProductList);
+			model.addAttribute("products", products);
 			model.addAttribute("current", user);
 			return "myproducts.html";
 		}
@@ -95,16 +95,16 @@ public class ProductController {
 		return "myproducts.html";
 	}
 
-	/*
-	 * Update existing product
-	 * 
-	 * @RequestMapping (value = "/update-product/{id}", method = RequestMethod.POST)
-	 * public String updateProduct(Model model, @ModelAttribute Product product){
-	 * Product updateProduct =
-	 * restTemplate.getForObject("http://localhost:18903/products/"+product.getId(),
-	 * Product.class, product); if(updateProduct !=null) {
-	 * restTemplate.put("http://localhost:18903/products/{id}",updateProduct.getId()
-	 * ); } return "index"; }
-	 */
-
+	
+	  /*Update existing product*/
+	  @RequestMapping (value = "/edit-product", method = RequestMethod.POST)
+	  public String updateProduct(Model model, Product product){
+		  restTemplate.put("http://localhost:18903/products/"+product.getId(), product); 
+		  User user = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
+		  Product[] products = restTemplate
+					.getForObject("http://localhost:18903/products/users/" + user.getEmail(), Product[].class);
+		  model.addAttribute("products", products);
+		  return "myproducts.html"; 
+	  }
+	 
 }

@@ -32,7 +32,7 @@
       <div class="form-container">
         <h1>My Products</h1>
         <section class="products">
-		        <div th:each="product : ${userProductList}">
+		        <div th:each="product : ${products}">
 		             <img class= "image" src="${product.image}" alt="Product image" >
 		              <div class="description-container" >
 		                  <h3 class="title" th:text="${product.title}"></h3>
@@ -51,11 +51,28 @@
 		             
 		        </div>
 	        </section>
-   
-
-
       </div>
 
+	<div th:each="product : ${products}" th:id="${product.id+'Modal'}" class="background-overlay">
+      	<div class="modal products">
+      		<span id="editProductClose" class="close pointer" >&times;</span>
+       		<h3>Edit Product</h3>
+      		<hr/>
+       	<form th:id="${product.id+'Form'}" th:action="@{/edit-product}" th:object="${product}" method="post">
+       		<label for="title">Title</label><br />
+       		<input type="text" name="title" th:value="${product.title}" /> <br /><br />
+       		<label for="price">Price</label><br />
+       		<input type="number" name="price" step="0.1" th:value="${product.price}" /> <br /><br />
+       		<label for="category">Category</label><br />
+       		<input type="text" name="category" th:value="${product.category}" /> <br /><br />
+       		<label for="status">Status</label> <br />
+			<input type="text" name="status" th:value="${product.status}"> <br /><br />
+			<label for="description">Description</label> <br />
+			<textarea name="description" th:form="${product.id+'Form'}" maxlength="500" th:text="${product.description}"></textarea> <br /><br >
+       		<button type="submit">Edit product</button> 
+       	</form>
+      	</div>
+      </div>
 
       <footer>
         <div class="footer_small">

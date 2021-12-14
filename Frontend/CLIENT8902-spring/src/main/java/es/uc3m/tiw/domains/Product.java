@@ -12,6 +12,7 @@ public class Product implements Serializable {
 
 	String category;
 	
+	String description;
 	int price;
 	
 	String status;
@@ -20,12 +21,13 @@ public class Product implements Serializable {
 		
 	}
 	
-	public Product(String id, String title, String owner, String category, int price, String status) {
+	public Product(String id, String title, String owner, String category, String description, int price, String status) {
 		super();
 		this.id=id;
 		this.title=title;
 		this.owner=owner;
 		this.category=category;
+		this.description=description;
 		this.price=price;
 		this.status=status;
 	}
@@ -61,6 +63,14 @@ public class Product implements Serializable {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public int getPrice() {

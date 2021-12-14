@@ -38,6 +38,11 @@ public class NavigationController {
 	
 	@RequestMapping (value="/products", method = RequestMethod.GET)
 	public String allProducts(Model model){
+		User c = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
+		if(c!= null) {
+			model.addAttribute("loggedin", true);
+			return "allproducts.html";
+		}
 		return "allproducts.html";
 	}
 	
@@ -49,8 +54,7 @@ public class NavigationController {
 			model.addAttribute("current", c);
 			model.addAttribute("loggedin", true);
 			return "myprofile.html";
-		}
-		  
+		}  
 		return "index.html";
 		
 	}
@@ -85,6 +89,7 @@ public class NavigationController {
 		User c = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
 		if(c!= null) {
 			model.addAttribute("current", c);
+			model.addAttribute("loggedin", true);
 			return "addproduct.html";
 		}
 		return "index.html";

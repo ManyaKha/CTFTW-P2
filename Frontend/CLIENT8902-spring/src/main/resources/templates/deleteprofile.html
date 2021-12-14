@@ -11,20 +11,23 @@
   </head>
 
   <body>
-  	<div class="header-logged">
-	  <header id= main_header>
-	      <a href="index"><h1 id="logo">Second-Hand</h1></a>
-	      <div class=navbar_container>
-	        <div class="menu_options">
-	          <a href="#">About Us</a>
-	          <a href="#">Contact Us</a>
-	        </div>
-	        <div class="buttons" id="buttons">
+
+	 <header id= main_header>
+        <a href="/"> <h1 id="logo">Second-Hand</h1> </a>
+        <div class=navbar_container>
+          <div class="menu_options">
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+          </div>
+          <div class="buttons" id="buttons" th:if="not ${loggedin}">
+            <button type="button" class="login_button" onclick="location.href='../login'">Login</button>
+          </div>
+          <div class="buttons" id="buttons" th:if="${loggedin}">
         		<button type="submit" class="login_button" onclick="location.href='../myprofile'">My profile</button>
         		<button type="submit" class="login_button" onclick="location.href='/logout-user'">Log Out</button>
         	</div>
-	    </header>
-	</div>
+      </header>
+
 
       <div class="form-container">
         <h1>Unsubscribe</h1>

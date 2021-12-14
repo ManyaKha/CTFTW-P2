@@ -7,6 +7,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="style/style.css">
   </head>
 
@@ -35,15 +36,18 @@
 		             <img class= "image" src="${product.image}" alt="Product image" >
 		              <div class="description-container" >
 		                  <h3 class="title" th:text="${product.title}"></h3>
-		                  <p class="id"><span id="id" th:text="${product.id}">default category</span></p>
-		                  <p class="category"><span th:text="${product.category}">default category</span></p>
-		                  <p class="price">€<span th:text="${product.price}">default price</span></p>
+		                  <p class="id" id="id" th:text="${product.id}">Unknown</p>
+		                  <p class="category" th:text="${product.category}">Unknown</p>
+		                  <p class="price" th:text="${product.price}">Unknown</p>
+		                  <span>
+		                  	<a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                    		<a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+		                  </span>
+		                  
 		              	
 		              </div>
 		              
 		               
-		             <button onclick="location.href='../deleteproduct'">Delete product</button>
-		              <button onclick="location.href='../editproduct'">Change product status</button>
 		             
 		        </div>
 	        </section>
@@ -75,6 +79,7 @@
         </div>
       </footer>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script src="script/script.js"></script>
   </body>
 </html>

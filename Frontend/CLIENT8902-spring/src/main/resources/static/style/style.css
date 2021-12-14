@@ -115,18 +115,17 @@
 
 
     .search_area{
-      width:80%;
-      margin: 0 auto;
+      margin: 0;
       text-align:center;
     }
 
-
-
     .search {
       width: auto;
-      padding: 50px;
+      padding-bottom: 50px;
       background-color: #eee;
       text-align:center;
+      display: flex;
+      justify-content: center;
     }
 
 
@@ -134,7 +133,6 @@
       padding: 15px;
       font-size: 17px;
       border: none;
-      width: 40%;
       font-family: 'Readex Pro', sans-serif;
     }
 
@@ -155,9 +153,14 @@
       color: white;
     }
 
+	.search_buttons{
+		display:flex;
+	}
+	.advanced_div{
+		display:block;
+	} 
 
     .products {
-      width: 80%;
       margin: 0 auto;
       margin-bottom: 20px;
       display: flex;
@@ -191,6 +194,9 @@
     }
 
 
+	.searchResults .product{
+		background-color: blue;
+	}
 
 
   /*body will occupy 100% of the page width and will have a white background*/
@@ -260,7 +266,7 @@
     width: 30%;
   }
 
-  /*Styling social media icons, by adjusting padding and colours*/
+  /*Styling social media icons, by adjusting padding and colors*/
   .fa {
     padding: 20px;
     /*font-size: 30px; */
@@ -449,4 +455,9 @@ float: right;
 #textarea:focus {
   background-color: #ddd;
   outline: none;
+}
+
+
+.hidden_input{
+	display: none !important;
 }

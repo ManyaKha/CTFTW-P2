@@ -1,0 +1,483 @@
+/* using this property allows padding and border to be included in the width and height the browser renders*/
+* {
+    box-sizing: border-box;
+  }
+
+  /*Setting font styling for h1,p etc. */
+  h1 {
+    font-family: 'Readex Pro', sans-serif;
+    color: #1A1D24;;
+    font-size: 2em;
+  }
+
+  h2, h3, h4 {
+    color: #1A1D24;;
+  }
+  h3, h4, p, a, label {
+    font-family: 'Karla', sans-serif;
+  }
+
+.latest-title {
+  text-align: center;
+}
+
+  .buttons {
+    margin-right: 15px;
+
+  }
+
+  .buttons button {
+
+    background-color:#13c1ac;
+    border-radius:3px;
+    border: none;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family: 'Readex Pro', sans-serif;
+    font-size:15px;
+    padding:9px 23px;
+    text-decoration:none;
+  }
+
+
+  .login_button:hover {
+    transform: scale(1.1);
+    color: #1A1D24;
+
+  }
+  .menu_options {
+    float: right;
+    margin-right: 20px;
+  }
+
+  /*targeting menu links to style them */
+  .menu_options a {
+    color: #1A1D24;
+    text-align:center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    white-space: nowrap;
+  }
+
+  /* using flex property to display the elements inside the container, used for resposivness */
+  .navbar_container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    width: 100%;
+  }
+
+  .menu_options a:hover {
+    background-color: #13c1ac;
+    color: #1A1D24;
+  }
+
+  /*Adjusting main header area using display:flex properties and additiona settings */
+  #main_header{
+    display: flex;
+    align-items: center;
+
+    width:100%;
+    padding: 20px 10px;
+    background-color: white;
+  }
+
+  /*targeting ID of h1 used in the header which is called #logo and adjusting the style*/
+  #logo {
+    float: left;
+    font-size: 2.5em;
+    text-align:left;
+    margin-top:0;
+    margin:0;
+    line-height:50px;
+    padding-left:9px;
+    color: #13c1ac;
+    white-space: nowrap;
+    font-family: 'Readex Pro', sans-serif;
+    }
+
+
+   .centered_text h1 {
+
+        color: white;
+        position: absolute;
+        text-align: center;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 5.5em;
+
+      }
+
+
+    #banner-image {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+
+    .search_area{
+      margin: 0;
+      text-align:center;
+    }
+
+    .search {
+      width: auto;
+      padding-bottom: 50px;
+      background-color: #eee;
+      text-align:center;
+      display: flex;
+      justify-content: center;
+    }
+
+
+    .search input[type=text] {
+      padding: 15px;
+      font-size: 17px;
+      border: none;
+      font-family: 'Readex Pro', sans-serif;
+    }
+
+
+    .search button {
+      background-color:white;
+      border: 1px solid #13c1ac;
+      display:inline-block;
+      color:#13c1ac;
+      font-family: 'Readex Pro', sans-serif;
+      font-size:17px;
+      padding:15px 23px;
+      text-decoration:none;
+      margin: 4px;
+    }
+
+    .search button:hover {
+      background-color: #13c1ac;
+      color: white;
+      
+    }
+
+	.search_buttons{
+		display:flex;
+	}
+	
+	
+	#advanced_search input, #advanced_search select {
+
+    background-color: white;
+    padding: 15px;
+    font-size: 17px;
+    border: 1px solid #13c1ac;
+    font-family: 'Readex Pro', sans-serif;
+    margin-left: 4px;
+    color: #757575;
+  }
+  
+  
+	.advanced_div{
+		display:block;
+	} 
+
+    .products {
+      margin: 0 auto;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-top: 20px;
+      padding-bottom: 30px
+    }
+
+    .products h1 {
+      width: 100%;
+    }
+
+    .image_gallery {
+      display: flex;
+      flex-wrap: wrap;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .image-container {
+      background-color: white;
+      margin: 16px;
+    }
+
+    .image-container:hover {
+      background-color: #13c1ac;
+      transform: scale(1.1);
+    }
+
+
+	.searchResults .product{
+		background-color: blue;
+	}
+
+
+  /*body will occupy 100% of the page width and will have a white background*/
+  body {
+    margin:0;
+    padding:0;
+    width: 100%;
+    background-color: #eceff1
+  }
+
+
+  /*Footer is set to occupy 100% width and be flexible*/
+  footer {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+  footer h4 {
+    color: #1A1D24;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .content_left {
+    display: flex;
+    float: left;
+    text-align: center;
+    width: 30%;
+    align-items: center;
+  }
+
+  .content_left #logo_footer {
+    float: left;
+    font-size: 2.5em;
+    text-align:center;
+    color: #13c1ac;
+    white-space: nowrap;
+  }
+
+
+  .footer_small {
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    padding-bottom: 20px;
+  }
+
+
+
+  .content_middle a{
+    color: #1A1D24;
+    text-decoration: none;
+    padding-right: 10px;
+  }
+
+
+  .content_right {
+    display: flex;
+    text-align: right;
+    justify-content: center;
+    color: #1A1D24;
+    flex-direction: column;
+    padding-right: 50px;
+    padding-bottom: 15px;
+    width: 30%;
+  }
+
+  /*Styling social media icons, by adjusting padding and colors*/
+  .fa {
+    padding: 20px;
+    /*font-size: 30px; */
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .fa:hover {
+    transform: scale(1.1);
+  }
+
+
+  .fa-facebook {
+    background: #13c1ac;
+    color: #1A1D24;
+  }
+
+  .fa-instagram {
+    background: #13c1ac;
+    color: #1A1D24;
+  }
+
+
+
+    .content_left #logo_footer {
+      font-size: 1.5em;
+    }
+
+
+    .content_right {
+      padding-right: 35px;
+    }
+    .fa {
+      margin: 5px;
+    }
+
+
+
+
+/*------------------------Login page--------------------------------*/
+
+
+.form-container {
+    align-items: center;
+    margin: 0 auto;
+    background-color: white;
+    width: 700px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+
+
+.form {
+    padding: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* input fields */
+  .form input[type=text], .form input[type=password], .form input[type=email] {
+    width: 500px;
+    display: inline-block;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+  }
+
+  /* When the inputs get focus, do something */
+  .form input[type=text]:focus, .form input[type=password]:focus, .form input[type=email]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+
+
+
+  .btn {
+    background-color:white;
+    border: 1px solid #13c1ac;
+    display:inline-block;
+    color:#13c1ac;
+    font-family: 'Readex Pro', sans-serif;
+    font-size:17px;
+    padding:15px 23px;
+    text-decoration:none;
+  }
+
+  .btn:hover {
+    background-color: #13c1ac;
+    color: white;
+  }
+
+
+  #create-user {
+      align-items: center;
+      margin-top: 30px;
+      text-align: center;
+  }
+
+  .error-message {
+    text-align: center;
+    color: #E0041D;
+  }
+
+
+/*------------------------Product page--------------------------------*/
+
+
+.product-container {
+  width:50%;
+  margin: 0 auto;
+  margin-top: 120px;
+  margin-bottom: 120px;
+  padding: 30px;
+  text-align:center;
+
+  background-color: white;
+}
+
+.product-image-container {
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+
+
+}
+
+.product-image {
+  float: left;
+}
+
+.description-container {
+  text-align: left;
+  margin-left: 30px;
+}
+
+.buy-button {
+position: relative;
+top: 400px;
+left: 300px;
+float: right;
+
+}
+
+
+/*------------------------My Account page--------------------------------*/
+.profile_buttons{
+	display:flex;
+}
+
+.manage-btn {
+  position: relative;
+  left: -160px;
+  top: 100px;
+}
+
+.unsub {
+  position: relative;
+  left: 170px;
+  top: 50px;
+}
+
+.unsub .btn:hover {
+  background-color: #da1414;
+}
+
+
+#textarea {
+  width: 500px;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: none;
+  background: #f1f1f1;
+  font-size: 16px;
+}
+
+#textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+
+.hidden_input{
+	display: none !important;
+}

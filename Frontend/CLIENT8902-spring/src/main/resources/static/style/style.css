@@ -17,6 +17,10 @@
     font-family: 'Karla', sans-serif;
   }
 
+.latest-title {
+  text-align: center;
+}
+
   .buttons {
     margin-right: 15px;
 
@@ -148,13 +152,38 @@
       font-size:17px;
       padding:15px 23px;
       text-decoration:none;
+      margin: 4px;
     }
 
     .search button:hover {
       background-color: #13c1ac;
       color: white;
+      
     }
 
+<<<<<<< Updated upstream
+=======
+	.search_buttons{
+		display:flex;
+	}
+	
+	
+	#advanced_search input, #advanced_search select {
+
+    background-color: white;
+    padding: 15px;
+    font-size: 17px;
+    border: 1px solid #13c1ac;
+    font-family: 'Readex Pro', sans-serif;
+    margin-left: 4px;
+    color: #757575;
+  }
+  
+  
+	.advanced_div{
+		display:block;
+	} 
+>>>>>>> Stashed changes
 
     .products {
       width: 80%;

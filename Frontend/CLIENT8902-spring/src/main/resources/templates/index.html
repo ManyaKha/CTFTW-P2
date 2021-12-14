@@ -38,6 +38,7 @@
                 <button type="submit">Quick Search</button>
                 <button type="submit">Advanced Search</button>
               </div>
+<<<<<<< Updated upstream
             </div>
 
           <section class="products">
@@ -79,6 +80,45 @@
           </div>
 
         </section>
+=======
+              <div class="advanced_div">
+              <form th:action="@{/search-category}" method="get">              
+               <div id="advanced_search" style="display:none; ">
+	  
+		            <select id="category" name="category">
+		             <option value="" selected disabled hidden>Search by category</option>
+		              <option value="Cars and Motorcycles">Cars and Motorcycles</option>
+		              <option value="Clothing, accessories and make-up">Clothing, accessories and make-up</option>
+		              <option value="Electronics">Electronics</option>
+		              <option value="Sports and Outdoor equipment">Sports and Outdoor equipment</option>
+		              <option value="Consoles and Video games">Consoles and Video games</option>
+		              <option value="Bikes">Bikes</option>
+		              <option value="Home, office and garden">Home, office and garden</option>
+		              <option value="Home appliances">Home appliances</option>
+		              <option value="Movies, books and music">Movies, books and music</option>
+		              <option value="For childeren and babies">For children and babies</option>
+		              <option value="Collectables">Collectible</option>
+		              <option value="Other">Other</option>
+		            </select>
+		          <button type=submit>Search by category</button>
+	          	</div>
+	          	
+                </form>
+               </div>
+              </div>
+            </div>
+ 			<h1 class="latest-title">Latest Products</h1>
+ 			<section class="products">
+		        <div th:each="product : ${productList}">
+		             <img class= "image" src="${product.image}" alt="Product image" >
+		              <div class="description-container" >
+		                  <h3 class="title" th:text="${product.title}"></h3>
+		                  <p class="category"><span th:text="${product.category}">default category</span></p>
+		                  <p class="price">€<span th:text="${product.price}">default price</span></p>
+		              </div>
+		        </div>
+	        </section>
+>>>>>>> Stashed changes
 
           <footer>
             <div class="footer_small">

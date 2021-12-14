@@ -24,27 +24,21 @@ public class UserController {
 	@RequestMapping("/")	
 	public String index(Model model){
 		User c = getCurrentUser();
-		if(c != null) {
-			model.addAttribute("current", c);
-			return "index-loggedin";
+		if(c!= null) {
+			model.addAttribute("loggedin", true);
 		}
 		return "index";
 	}
 	
-	@RequestMapping("/loggedin")	
-	public String index_loggedin(Model model) {
-		User c = getCurrentUser();
-		model.addAttribute("current", c);
-		return "index-loggedin";
-	}
-	
 	@RequestMapping (value = "/register", method = RequestMethod.GET)
-	public String regsiter(){
+	public String regsiter(Model model){
+		  
 		return "register.html";
 	}
 	
 	@RequestMapping (value="/login", method = RequestMethod.GET)
-	public String showLogin(){
+	public String showLogin(Model model){
+		  
 		return "login.html";
 	}
 	
@@ -53,8 +47,10 @@ public class UserController {
 		User c = getCurrentUser();
 		if(c!= null) {
 			model.addAttribute("current", c);
+			model.addAttribute("loggedin", true);
 			return "myprofile.html";
 		}
+		  
 		return "index.html";
 		
 	}
@@ -64,8 +60,10 @@ public class UserController {
 		User c = getCurrentUser();
 		if(c!= null) {
 			model.addAttribute("current", c);
+			model.addAttribute("loggedin", true);
 			return "editprofile.html";
 		}
+		  
 		return "index.html";
 	}
 	
@@ -74,8 +72,10 @@ public class UserController {
 		User c = getCurrentUser();
 		if(c!= null) {
 			model.addAttribute("current", c);
+			model.addAttribute("loggedin", true);
 			return "deleteprofile.html";
 		}
+		  
 		return "index.html";
 	}
 	
@@ -88,6 +88,7 @@ public class UserController {
 			return "addproduct.html";
 			
 		}
+		  
 		return "index.html";
 	}
 	
@@ -98,6 +99,7 @@ public class UserController {
 			model.addAttribute("current", c);
 			return "myproducts.html";
 		}
+		  
 		return "index.html";
 	}
 	
@@ -116,19 +118,21 @@ public class UserController {
 		uUser.setCurrent(true);
 		restTemplate.put("http://localhost:18902/users/"+ uUser.getEmail(), uUser);
 		model.addAttribute("current", uUser);
-		return "index-loggedin.html";
+		model.addAttribute("loggedin", true);
+		return "index.html";
 	}
 	
 	
 	@RequestMapping (value = "/login-user", method = RequestMethod.GET)
 	public String loginUser(Model model, @RequestParam String email, @RequestParam String password) {
 		User user = restTemplate.getForObject("http://localhost:18902/users/{email}/{password}", User.class, email, password);
-
 		if (user != null) {	
 			model.addAttribute("user", user);
 			setCurrentUser(model, user);
-			return "index-loggedin.html";
+			model.addAttribute("loggedin", true);
+			return "index.html";
 		}
+		  
 		return "index.html";
 	}
 	
@@ -139,14 +143,16 @@ public class UserController {
 		User user = restTemplate.postForObject("http://localhost:18902/users", uUser, User.class);
 		model.addAttribute("user", user);
 		setCurrentUser(model, user);
-		return "index-loggedin.html";
+		model.addAttribute("loggedin", true);
+		return "index.html";
 	}
 	
 	@RequestMapping (value = "/logout-user", method = RequestMethod.GET)
-	public String logoutUser(){
+	public String logoutUser(Model model){
 		User c = getCurrentUser();
 		c.setCurrent(false);
 		restTemplate.put(this.CLIE8902_URL + "/" + c.getEmail(), c);
+		  
 		return "index.html";
 	}
 	
@@ -157,6 +163,7 @@ public class UserController {
 		if (user != null) {
 			restTemplate.delete("http://localhost:18902/users/{email}", user.getEmail());
 		}
+		  
 		return "index.html";	
 	}
 	
@@ -167,9 +174,12 @@ public class UserController {
 		if (user != null) {
 			uUser.setCurrent(true);
 			restTemplate.put("http://localhost:18902/users/"+ user.getEmail(), uUser);
-			return "index-loggedin.html";	
+			model.addAttribute("loggedin", true);
+			return "index.html";
 		}
+		  
 		return "editprofile.html";	
+		
 	}
 	
 }

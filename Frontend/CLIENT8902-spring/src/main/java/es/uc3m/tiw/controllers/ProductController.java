@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import es.uc3m.tiw.domains.Product;
+import es.uc3m.tiw.domains.User;
 
 @Controller
 public class ProductController {
@@ -27,13 +27,31 @@ public class ProductController {
 	 */
 	
 	/*View Product*/
-	@RequestMapping (value = "products", method = RequestMethod.GET)
+	@RequestMapping (value = "/", method = RequestMethod.GET)
 	public String returnAllProducts(Model model) {
-		Product[] prolist = restTemplate.getForObject("http://localhost:18903/products",Product[].class);
-		System.out.println("enter in returnAllProducts");
-		model.addAttribute("productList", prolist);
-		return "index";
+		Product[] productList = restTemplate.getForObject("http://localhost:18903/products",Product[].class);
+		User user = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
+		model.addAttribute("productList", productList);
+		if (user != null) {
+			model.addAttribute("loggedin", true);
+			return "index.html";
+		}
+		return "index.html";
 	}
+	
+	/*Search Product - Search*/
+	@RequestMapping (value = "search-product", method = RequestMethod.POST)
+	public String searchProducts(Model model, @RequestParam String title) {
+		Product[] searchResults = restTemplate.getForObject("http://localhost:18903/products/{title}", Product[].class, title);
+		User user = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
+		model.addAttribute("keyword", title);
+		model.addAttribute("searchResults", searchResults);
+		if (user != null) {
+			return "allproducts-loggedin.html";
+		}
+		return "allproducts";	
+	}
+	
 	
 	/*
 	 * @RequestMapping (value = "showAllProducts", method = RequestMethod.POST)
@@ -72,14 +90,6 @@ public class ProductController {
 		return "index";	
 	}
 	
-	/*Search Product- Quick Search*/
-	@RequestMapping (value = "searchProduct", method = RequestMethod.POST)
-	public String searchUsuarios(Model model, @RequestParam Product product) {
-		Product[] searchProduct = restTemplate.getForObject("http://localhost:18903/products/{title}", Product[].class, product);
-		product.setTitle("Product1");
-		model.addAttribute("searchProduct", searchProduct);
-		model.addAttribute("product", product);
-		return "index";	
-	}
+	
 	
 }

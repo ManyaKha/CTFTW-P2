@@ -17,9 +17,13 @@
             <a href="#">About Us</a>
             <a href="#">Contact Us</a>
           </div>
-          <div class="buttons" id="buttons">
+          <div class="buttons" id="buttons" th:if="not ${loggedin}">
             <button type="button" class="login_button" onclick="location.href='../login'">Login</button>
           </div>
+          <div class="buttons" id="buttons" th:if="${loggedin}">
+        		<button type="submit" class="login_button" onclick="location.href='../myprofile'">My profile</button>
+        		<button type="submit" class="login_button" onclick="location.href='/logout-user'">Log Out</button>
+        	</div>
       </header>
 
 
@@ -52,21 +56,17 @@
                 
               </div>
             </div>
-
-          <section class="products" th:each="product : ${productList}">
-          <h1>Latest Products</h1>
-
-          <div id = "gallery" class="image_gallery">
-              
-             <img class= "image" src="images/chair.jpg" alt="" >
-              <div class="description-container" >
-                  <h3 class="title" th:text="${product.Title}"></h3>
-                  <p class="category"><span th:text="${product.Category}">default category</span></p>
-                  <p class="price"><span th:text="${product.Price}">default price</span></p>
-              </div>
-            </div>
-
-        </section>
+ 			<h1>Latest Products</h1>
+	        <section class="products" th:each="product : ${productList}">
+	          <div id = "gallery" class="image_gallery">
+	             <img class= "image" src="images/chair.jpg" alt="" >
+	              <div class="description-container" >
+	                  <h3 class="title" th:text="${product.title}"></h3>
+	                  <p class="category"><span th:text="${product.category}">default category</span></p>
+	                  <p class="price"><span th:text="${product.price}">default price</span></p>
+	              </div>
+	            </div>
+	        </section>
 
           <footer>
             <div class="footer_small">

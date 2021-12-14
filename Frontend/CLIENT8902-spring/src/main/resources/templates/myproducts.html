@@ -30,7 +30,17 @@
 
       <div class="form-container">
         <h1>My Products</h1>
-        
+        <section class="products">
+		        <div th:each="product : ${userProductList}">
+		             <img class= "image" src="${product.image}" alt="Product image" >
+		              <div class="description-container" >
+		                  <h3 class="title" th:text="${product.title}"></h3>
+		                  <p class="category"><span th:text="${product.category}">default category</span></p>
+		                  <p class="price">€<span th:text="${product.price}">default price</span></p>
+		              </div>
+		        </div>
+	        </section>
+   
 
 
       </div>

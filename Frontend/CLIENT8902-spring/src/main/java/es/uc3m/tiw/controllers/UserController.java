@@ -45,6 +45,7 @@ public class UserController {
 		return "allproducts.html";
 	}
 	
+	
 	@RequestMapping (value="/myprofile", method = RequestMethod.GET)
 	public String myProfile(Model model){
 		User c = getCurrentUser();
@@ -93,16 +94,6 @@ public class UserController {
 		return "index.html";
 	}
 	
-	@RequestMapping (value="/myproducts", method = RequestMethod.GET)
-	public String myProducts(Model model){
-		User c = getCurrentUser();
-		if(c!= null) {
-			model.addAttribute("current", c);
-			return "myproducts.html";
-		}
-		  
-		return "index.html";
-	}
 	
 	
 

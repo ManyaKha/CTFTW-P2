@@ -17,16 +17,8 @@ public class ProductController {
 	@Autowired
 	RestTemplate restTemplate;
 	
-	// LLAMADAS AL CONTROLADOR
-	/*
-	 * @RequestMapping (value = "viewProducts", method = RequestMethod.GET) public
-	 * String viewProducts(Model model, @PathVariable Product products) { Product
-	 * pro = restTemplate.getForObject("http://localhost:18903/products",
-	 * Product.class, products); model.addAttribute("product", pro); return "index";
-	 * }
-	 */
 	
-	/*View Product*/
+	/*View product*/
 	@RequestMapping (value = "/", method = RequestMethod.GET)
 	public String returnAllProducts(Model model) {
 		Product[] productList = restTemplate.getForObject("http://localhost:18903/products",Product[].class);
@@ -39,27 +31,22 @@ public class ProductController {
 		return "index.html";
 	}
 	
-	/*Search Product - Search*/
-	@RequestMapping (value = "search-product", method = RequestMethod.POST)
-	public String searchProducts(Model model, @RequestParam String title) {
-		Product[] searchResults = restTemplate.getForObject("http://localhost:18903/products/{title}", Product[].class, title);
+	/*Search product - Search*/
+	@RequestMapping (value = "search", method = RequestMethod.GET)
+	public String searchProducts(Model model, @RequestParam String keyword) {
+		Product[] searchResults = restTemplate.getForObject("http://localhost:18903/products/{keyword}", Product[].class, keyword);
 		User user = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
-		model.addAttribute("keyword", title);
+		model.addAttribute("keyword", keyword);
 		model.addAttribute("searchResults", searchResults);
 		if (user != null) {
-			return "allproducts-loggedin.html";
+			model.addAttribute("loggedin", true);
+			return "allproducts.html";	
 		}
-		return "allproducts";	
+		model.addAttribute("loggedin", false);
+		return "allproducts.html";	
 	}
 	
 	
-	/*
-	 * @RequestMapping (value = "showAllProducts", method = RequestMethod.POST)
-	 * public String saveProducts(Model model, @ModelAttribute Product pro) {
-	 * Product Produ =
-	 * restTemplate.postForObject("http://localhost:8082/products/productList", pro,
-	 * Product.class); model.addAttribute("product", pro); return "index"; }
-	 */
 	
 	
 	/*Create New Product*/

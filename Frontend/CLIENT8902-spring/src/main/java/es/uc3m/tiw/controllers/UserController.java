@@ -32,14 +32,17 @@ public class UserController {
 	
 	@RequestMapping (value = "/register", method = RequestMethod.GET)
 	public String regsiter(Model model){
-		  
 		return "register.html";
 	}
 	
 	@RequestMapping (value="/login", method = RequestMethod.GET)
 	public String showLogin(Model model){
-		  
 		return "login.html";
+	}
+	
+	@RequestMapping (value="/products", method = RequestMethod.GET)
+	public String allProducts(Model model){
+		return "allproducts.html";
 	}
 	
 	@RequestMapping (value="/myprofile", method = RequestMethod.GET)

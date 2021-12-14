@@ -35,24 +35,16 @@
           </div>
 
 
-          <div class="search_area" th:action="@{/}">
+          <div class="search_area" >
               <h1 class="title">Search</h1>
               <div class="search">
-              <form>
-              <input id=keyword type="text" placeholder="Search..." name="searchProduct" th:value=${searchProduct}>
+              <form th:action="@{/search}" method="get">
+              <input id=keyword type="text" placeholder="Search..." name="keyword" th:value=${keyword}>
                 <button type="submit">Quick Search</button>
                 <button type="submit">Advanced Search</button>
-                <script type="text/javascript">
-				    function clearSearch() {
-				        window.location = "[[@{/}]]";
-				    }
-				</script>
+               
               </form>
-              <div class="searchResults" th:each="product : ${searchProduct}">
-                  <h3 class="title" th:text="${product.title}"></h3>
-                  <p class="category"><span th:text="${product.category}">default category</span></p>
-                  <p class="price"><span th:text="${product.price}">default price</span></p>
-              </div>
+              
                 
               </div>
             </div>

@@ -35,12 +35,10 @@
              	<button type="submit">Search</button>
              	<button type="submit">Advanced Search</button>
              	
-	             <script type="text/javascript">
-	             	function clearSearch() { window.location = "[[@{/}]]"; }
-				</script>
+	            
            </form>
            
-           <div class="searchResults" th:each="product : ${searchProduct}">
+           <div class="searchResults" th:each="product : ${searchResults}">
                <h3 class="title" th:text="${product.title}"></h3>
                <p class="category"><span th:text="${product.category}">default category</span></p>
                <p class="price"><span th:text="${product.price}">default price</span></p>

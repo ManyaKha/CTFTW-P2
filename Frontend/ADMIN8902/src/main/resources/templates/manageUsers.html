@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Second-Hand Shop | Home</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla&family=Readex+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+  <body>
+    
+    <header id="main-header">
+    	<h1 id="logo">Second-Hand Administration</h1>
+	    <div id="vertical-navbar">
+	        <ul>
+	        	<li> <a class="active" href="manage-users">Manage Users</a> </li>
+	        	<li> <a href="manage-products">Manage Products</a> </li>
+	        	<li> <a href="transactions">Check Transactions</a> </li>
+	        	<li> <a href="/logout-user">Log out</a> </li>
+	        </ul> 
+	    </div>
+    </header>
+    
+    <div id="page-content">
+    	<h1>User Management</h1>
+    	<table id="users">
+	    	<tr>
+	    		<th>Email</th>
+	    		<th>Name</th>
+	    		<th>Surname</th>
+	    		<th>City of Residence</th>
+	    		<th>Role</th>
+	    		<th> Action </th>
+	    	<tr>
+	    	<tr th:each="user : ${users}">
+	    		<td th:text="${user.email}">Unknown</td>
+	    		<td th:text="${user.name}">Unknown</td>
+	    		<td th:text="${user.surname}">Unknown</td>
+	    		<td th:text="${user.city}">Unknown</td>
+	    		<td th:text="${user.administrator ? 'admin' : 'user'}">Unknown</td>
+	    		<td>
+                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                </td>
+	    	</tr>
+    	</table>
+    	
+        <div th:each="user : ${users}" th:id="${user.email+'Modal'}" class="background-overlay">
+        	<div class="modal">
+        		<span
+          			id="editUserClose"
+          			class="close pointer"
+         			>&times;
+         		</span>
+         		<h3>Edit User</h3>
+        		<hr />
+	        	<form th:id="${user.email+'Form'}" th:action="@{/edit-user}" th:object="${user}" method="post">
+	        		<label for="email">Email</label><br />
+	        		<input type="text" name="email" th:value="${user.email}" readonly /> <br /><br />
+	        		<label for="name">Name</label><br />
+	        		<input type="text" name="name" th:value="${user.name}" /> <br /><br />
+	        		<label for="Surname">Surname</label><br />
+	        		<input type="text" name="surname" th:value="${user.surname}" /> <br /><br />
+	        		<label for="city">City of Residence</label><br />
+	        		<input type="text" name="city" th:value="${user.city}" /> <br /><br />
+	        		<label for="role">Role</label> <br />
+					<select name="administrator" id="role" th:from="${user.email+'Form'}">
+						<option value="true" th:selected="${user.administrator==true}">admin</option>
+						<option value="false" th:selected="${user.administrator==false}">user</option>
+					</select> <br /><br />
+	        		<input type="submit" value="Edit User">
+	        	</form>
+        	</div>
+        </div>
+    	
+    </div>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  		<script type="text/javascript" src="script/usermanagement.js"></script>
+  </body>
+</html>

@@ -415,7 +415,9 @@ float: right;
 
 
 /*------------------------My Account page--------------------------------*/
-
+.profile_buttons{
+	display:flex;
+}
 
 .manage-btn {
   position: relative;

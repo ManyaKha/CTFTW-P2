@@ -2,15 +2,16 @@ package es.uc3m.tiw.domains;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class User implements Serializable {
-	
+
+	private static final long serialVersionUID = 1L;
 	private String email;
 	private String password;
 	private String name;
 	private String surname;
 	private String city;
 	private boolean administrator;
+	private boolean current;
 	
 	public User() {
 	}
@@ -70,6 +71,12 @@ public class User implements Serializable {
 	public void setAdministrator(boolean administrator) {
 		this.administrator = administrator;
 	}
-	
-	
+
+	public boolean isCurrent() {
+		return current;
+	}
+
+	public void setCurrent(boolean current) {
+		this.current = current;
+	}
 }

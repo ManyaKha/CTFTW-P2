@@ -1,20 +1,7 @@
 package es.uc3m.tiw.domains;
 
-import java.io.Serializable;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-@SuppressWarnings("serial")
-@Document(collection="Transactions")
-@JsonPropertyOrder({"transactionId", "timeOfTransaction", "productName", "price", "seller", "buyer"})
-public class Transaction implements Serializable{
+public class Transaction {
 	
-	@Id
-	private String transactionId;
 	private String timeOfTransaction;
 	private String productName;
 	private int price;
@@ -25,22 +12,12 @@ public class Transaction implements Serializable{
 		
 	}
 	
-	@PersistenceConstructor
-	public Transaction(String transactionId, String timeOfTransaction, String productName, int price, String seller,String buyer) {
-		this.setTransactionId(transactionId);
+	public Transaction(String timeOfTransaction, String productName, int price, String seller,String buyer) {
 		this.setTimeOfTransaction(timeOfTransaction);
 		this.setProductName(productName);
 		this.setPrice(price);
 		this.setSeller(seller);
 		this.setBuyer(buyer);
-	}
-	
-	public String getTransactionId() {
-		return transactionId;
-	}
-	
-	public void setTransactionId(String transactionId) {
-		this.transactionId = transactionId;
 	}
 
 	public String getTimeOfTransaction() {
@@ -82,5 +59,7 @@ public class Transaction implements Serializable{
 	public void setBuyer(String buyer) {
 		this.buyer = buyer;
 	}
+	
+	
 
 }

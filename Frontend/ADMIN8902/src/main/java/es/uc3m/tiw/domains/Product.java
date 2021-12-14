@@ -2,17 +2,10 @@ package es.uc3m.tiw.domains;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-
-@Entity
-@Table(name="product")
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
+	
 	String id;
 	String title;
 	String owner;
@@ -22,18 +15,16 @@ public class Product implements Serializable {
 	String status;
 	
 	public Product() {
-		
 	}
 	
 	public Product(String id, String title, String owner, String category, String description, float price, String status) {
-		super();
 		this.id = id;
-		this.title=title;
-		this.owner=owner;
-		this.category=category;
-		this.description=description;
-		this.price=price;
-		this.status=status;
+		this.title = title;
+		this.owner = owner;
+		this.category = category;
+		this.description = description;
+		this.price = price;
+		this.status = status;
 	}
 	
 	public String getId() {
@@ -43,7 +34,7 @@ public class Product implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	
 	public String getTitle() {
 		return this.title;
 	}
@@ -53,7 +44,7 @@ public class Product implements Serializable {
 	}
 
 	public String getOwner() {
-		return owner;
+		return this.owner;
 	}
 
 	public void setOwner(String owner) {
@@ -61,7 +52,7 @@ public class Product implements Serializable {
 	}
 
 	public String getCategory() {
-		return category;
+		return this.category;
 	}
 
 	public void setCategory(String category) {
@@ -69,7 +60,7 @@ public class Product implements Serializable {
 	}
 	
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 
 	public void setDescription(String description) {
@@ -86,11 +77,12 @@ public class Product implements Serializable {
 	}
 
 	public String getStatus() {
-		return status;
+		return this.status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
-	}	
-
+	}		
+	
+	
 }

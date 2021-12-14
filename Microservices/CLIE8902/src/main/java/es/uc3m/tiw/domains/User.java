@@ -11,8 +11,6 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
-//	@GeneratedValue(strategy=GenerationType.IDENTITY)
-//	private Long id;
 	@Id
 	private String email;
 	private String password;
@@ -20,11 +18,13 @@ public class User implements Serializable {
 	private String surname;
 	private String city;
 	private boolean administrator;
+	private boolean current;
+	
 	
 	public User() {
 	}
 	
-	public User(String email, String password, String name, String surname, String city, boolean administrator) {
+	public User(String email, String password, String name, String surname, String city, boolean administrator, boolean current) {
 		super();
 		this.email = email;
 		this.password = password;
@@ -32,6 +32,7 @@ public class User implements Serializable {
 		this.surname = surname;
 		this.city = city;
 		this.administrator = administrator;
+		this.current = current;
 	}
 
 	public String getEmail() {
@@ -70,6 +71,12 @@ public class User implements Serializable {
 	}
 	public void setAdministrator(boolean administrator) {
 		this.administrator = administrator;
+	}
+	public boolean isCurrent() {
+		return current;
+	}
+	public void setCurrent(boolean current) {
+		this.current = current;
 	}
 
 	

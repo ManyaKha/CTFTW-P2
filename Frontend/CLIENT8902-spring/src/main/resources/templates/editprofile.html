@@ -11,67 +11,57 @@
   </head>
 
   <body>
-    <header id= main_header>
-        <a href="/"> <h1 id="logo">Second-Hand</h1> </a>
-        <div class=navbar_container>
-          <div class="menu_options">
-            <a href="#">About Us</a>
-            <a href="#">Contact Us</a>
-          </div>
-          <div class="buttons" id="buttons">
-            <button type="button" class="login_button">Login</button>
-          </div>
-      </header>
+    <div class="header-logged">
+	  <header id= main_header>
+	      <a href="index"><h1 id="logo">Second-Hand</h1></a>
+	      <div class=navbar_container>
+	        <div class="menu_options">
+	          <a href="#">About Us</a>
+	          <a href="#">Contact Us</a>
+	        </div>
+	        <div class="buttons" id="buttons">
+        		<button type="submit" class="login_button" onclick="location.href='../myprofile'">My profile</button>
+        		<button type="submit" class="login_button" onclick="location.href='/logout-user'">Log Out</button>
+        	</div>
+	    </header>
+	</div>
 
       <div class="form-container">
-        <h1>My Account</h1>
-        <p>Email: <span th:text="${user.email}">default email</span></p>
-          <form class="form" th:action="@{/updateUser}" th:object="${user}" method="post">
+        <h1>Edit profile</h1>
+          <form class="form" th:action="@{/update-user}" th:object="${user}" method="post">
 
             <div>
-
-              <label for="email">Email:</label>
-              <br>
-              <input type="email" name="email" value="" required>
-
+            	<label for="email">Email:</label><br>
+            	<input type="email" name="email" th:value="${current.email}" required>
             </div>
 
             <div>
               <label for="psw">Password: </label>
               <br>
-              <input type="password" name="email" required>
+              <input type="password" name="password" th:value="${current.password}" required>
             </div>
-
-            <div>
-              <label for="passwordRepeat">Repeat password: </label>
-              <br>
-              <input type="password" name="passwordRepeat" required>
-            </div>
-
 
             <div>
               <label for="name">Name: </label>
               <br>
-              <input type="text" name="name" required>
+              <input type="text" name="name" th:value="${current.name}"required>
             </div>
 
             <div>
               <label for="surname">Surname: </label>
               <br>
-              <input type="text" name="surname" required>
+              <input type="text" name="surname" th:value="${current.surname}" required>
             </div>
 
             <div>
               <label for="city">City of Residence: </label>
               <br>
-              <input type="text" name="city" required>
+              <input type="text" name="city" th:value="${current.city}" required>
             </div>
 
-            <div><input type="submit" value="Update Account" class="btn"></div>
+            <div><input type="submit" value="Update account" class="btn"></div>
+            <div class="unsub"><a href="unsubscribe" class="btn">Delete profile</a></div>
 
-            <div class="manage"><a href="../addproduct" class="btn">Manage Products</a></div>
-            <div class="unsub"><a  href="../unsubscribe" class="btn">Unsubscribe </a></div>
-          
 
           </form>
 

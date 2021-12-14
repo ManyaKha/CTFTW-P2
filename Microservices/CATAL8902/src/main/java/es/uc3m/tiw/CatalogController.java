@@ -4,6 +4,8 @@ package es.uc3m.tiw;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,8 +50,8 @@ public class CatalogController {
    
    /*Search Product by Title and Owner*/
    @RequestMapping(value= "/products/{title}/{owner}",method = RequestMethod.GET)
-   public @ResponseBody Product getProductsByTitleAndOwner(String title, String owner){
-		return daoproduct.findByOwnerAndTitle(owner, title);
+   public @ResponseBody Product getProductsByTitleAndOwner(String productId){
+		return daoproduct.findById(productId);
    }
    
    /*Search Product by Category*/
@@ -72,18 +74,24 @@ public class CatalogController {
 	}
 	
 	/*Delete Existing Product*/
-	@RequestMapping(method = RequestMethod.DELETE, value="/products/{owner}/{title}")
-	public void deleteProduct(@PathVariable @Validated String title, String owner)	{
-		Product prod = daoproduct.findByOwnerAndTitle(owner, title);
+	@RequestMapping(method = RequestMethod.DELETE, value="/products/{id}")
+	public ResponseEntity<Product> deleteProduct(@PathVariable @Validated String id)	{
+		Product prod = daoproduct.findById(id);
+		System.out.println("Catalog");
+		System.out.println(prod);
 		if(prod != null) {
 			daoproduct.delete(prod);
+			return new ResponseEntity<>(prod, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 	
 	/*Update existing product*/
-	@RequestMapping(method = RequestMethod.PUT, value="/products/{owner}/{title}")
-	public @ResponseBody Product updateProduct(@PathVariable String owner, @PathVariable String title, @RequestBody Product sProd) {
-		Product prod = daoproduct.findByOwnerAndTitle(owner, title);
+	@RequestMapping(method = RequestMethod.PUT, value="/products/{id}")
+	public @ResponseBody Product updateProduct(@PathVariable String id, @RequestBody Product sProd) {
+		Product prod = daoproduct.findById(id);
+		prod.setId(id);
 		prod.setTitle(sProd.getTitle());
 		prod.setOwner(sProd.getOwner());	
 		prod.setStatus(sProd.getStatus());
@@ -93,5 +101,4 @@ public class CatalogController {
 		prod.setStatus(sProd.getStatus());
 		return daoproduct.save(prod);
 	}
-
 }

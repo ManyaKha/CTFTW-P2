@@ -1,6 +1,6 @@
 [
 	{ 
-		"_id": "c002f530-2ca4-433a-9a69-74c1444747ce",
+		"transactionId": "c002f530-2ca4-433a-9a69-74c1444747ce",
 		"timeOfTransaction": "15-02-2002 12:01:45",
 		"productName": "Flying car",
 		"price": 50,
@@ -9,7 +9,7 @@
 	},
 	
 	{
-		"_id": "a67e5b10-569e-11ec-bf63-0242ac130002",
+		"transactionId": "a67e5b10-569e-11ec-bf63-0242ac130002",
 		"timeOfTransaction": "23-02-2018 14:02:44",
 		"productName": "Reinsdeer",
 		"price": 300,
@@ -17,7 +17,7 @@
 		"buyer": "Donald Duck"
 	},
 	{
-		"_id": "1ee1d38e-569f-11ec-bf63-0242ac130002",
+		"transactionId": "1ee1d38e-569f-11ec-bf63-0242ac130002",
 		"timeOfTransaction": "08-08-2008 08:08:08",
 		"productName": "Eight ball",
 		"price": 8,

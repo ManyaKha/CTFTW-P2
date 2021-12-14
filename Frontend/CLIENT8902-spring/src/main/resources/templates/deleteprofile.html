@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Unsubscribe</title>
+    <title>Delete profile</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla&display=swap" rel="stylesheet">
@@ -11,33 +11,32 @@
   </head>
 
   <body>
-    <header id= main_header>
-        <a href="/"> <h1 id="logo">Second-Hand</h1> </a>
-        <div class=navbar_container>
-          <div class="menu_options">
-            <a href="#">About Us</a>
-            <a href="#">Contact Us</a>
-          </div>
-          <div class="buttons" id="buttons">
-            <button type="button" class="login_button" onclick="location.href='../login'">Login</button>
-          </div>
-      </header>
+  	<div class="header-logged">
+	  <header id= main_header>
+	      <a href="index"><h1 id="logo">Second-Hand</h1></a>
+	      <div class=navbar_container>
+	        <div class="menu_options">
+	          <a href="#">About Us</a>
+	          <a href="#">Contact Us</a>
+	        </div>
+	        <div class="buttons" id="buttons">
+        		<button type="submit" class="login_button" onclick="location.href='../myprofile'">My profile</button>
+        		<button type="submit" class="login_button" onclick="location.href='/logout-user'">Log Out</button>
+        	</div>
+	    </header>
+	</div>
 
       <div class="form-container">
         <h1>Unsubscribe</h1>
-          <form class="form" th:action="@{/deleteUserAccount}" th:object="${user}" method="post">
-              <div> <label for="email">Email</label>
-                <br>
-               <input type="email" placeholder="Enter Email" name="email" id="email" required></div>
+          <form class="form" th:action="@{/delete-user}" th:object="${current}" method="post">
+              <div> 
+              	<label for="email">Email</label>
+              	<input type="email" name="email" id="email" th:value="${current.email}" required>
+              </div>
 
-
-              
-
-              <div><input type="submit" value="Delete account" class="btn"/></div>
+              <input type="submit" value="Delete account" class="btn"/>
 
           </form>
-          
-
       </div>
 
 

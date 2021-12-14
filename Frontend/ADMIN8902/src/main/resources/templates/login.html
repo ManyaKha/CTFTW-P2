@@ -10,13 +10,11 @@
     <link rel="stylesheet" href="style/style.css" />
   </head>
 
-  <body>
-    <header id= main_header>
-        <a href="/"> <h1 id="logo"> Second-Hand Administration</h1> </a>
-     </header>
+  <body id="register-body">
      <div class="form-container">
-        <h1>Please Login</h1>
-          <form class="form" th:action="@{/loginUser}" method="get">
+     	<h1>Second-Hand Administration</h1>
+        <h2>Log in</h2>
+          <form class="form" th:action="@{/login-user}" method="post">
               <div> <label for="email">Email</label>
                 <br>
                <input type="email" placeholder="Enter Email" name="email" required id="email"></div>
@@ -25,14 +23,12 @@
               <div ><label for="password">Password</label>
                 <br>
               <input type="password" placeholder="Enter Password" name="password" required id="password"></div>
-
               <div><input type="submit" value="Log in" class="btn"/></div>
-
           </form>
+          <p class="error-message" th:if="${loginFailed}">Incorrect email or password. Try again.</p>
           <div id="create-user">
              <p>Don't have an Account?</p> <a href="../register">Sign up</a>
           </div>
-
       </div>
   </body>
 </html>

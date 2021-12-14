@@ -88,10 +88,10 @@ public class ProductController {
    
 	/*Delete existing product*/
 	@RequestMapping (value = "/delete-product", method = RequestMethod.POST)
-	public String deleteProduct(Model model, @ModelAttribute Product product){
-		Product delProduct = restTemplate.getForObject("http://localhost:18903/products/"+product.getId(), Product.class, product);
+	public String deleteProduct(Model model, @ModelAttribute String id){
+		Product delProduct = restTemplate.getForObject("http://localhost:18903/products/{id}", Product.class, id);
 		if (delProduct != null) {
-			restTemplate.delete("http://localhost:18903/products/"+delProduct.getId());
+			restTemplate.delete("http://localhost:18903/products/{id}",delProduct.getId());
 		}
 		return "index";	
 	}
@@ -101,7 +101,7 @@ public class ProductController {
 	public String updateProduct(Model model, @ModelAttribute Product product){
 		Product updateProduct = restTemplate.getForObject("http://localhost:18903/products/"+product.getId(), Product.class, product);
 		if(updateProduct !=null) {
-			restTemplate.put("http://localhost:18903/products/{owner}/{title}", updateProduct.getOwner(), updateProduct.getTitle());			
+			restTemplate.put("http://localhost:18903/products/{id}",updateProduct.getId());			
 		}
 		return "index";	
 	}

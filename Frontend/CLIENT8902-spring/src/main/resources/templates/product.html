@@ -1,17 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Product</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="style/style.css">
-  </head>
-
-  <body>
-    <header id= main_header>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Shop Item - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../style/startbootstrap-shop-item.css" rel="stylesheet" />
+        <link href="../style/style.css" rel="stylesheet">
+        <link href="../style/credit-card.css" rel="stylesheet">
+    </head>
+    <body>
+    
+        <header id= main_header>
         <a href="/"> <h1 id="logo">Second-Hand</h1> </a>
         <div class=navbar_container>
           <div class="menu_options">
@@ -19,51 +27,142 @@
             <a href="#">Contact Us</a>
           </div>
           <div class="buttons" id="buttons">
-            <button type="button" class="login_button" >Login</button>
+            <button type="button" class="login_button" onclick="location.href='../login'">Login</button>
+          </div>
           </div>
       </header>
-
-      <div class="product-container">
-                    <div class="product-image-container" >
-                     <img class= "product-image" src="images/chair.jpg" alt="" >
-                      <div class="description-container">
-                          <h3 class="title" >Chair</h3>
-                          <p class="description">Description:</p>
-                          <p class="category">Category:</p>
-                          <p class="Status">Status: Available</p>
-                          <div class="price">
-                          <p>Price: €40,00</p>
-                          </div >
-
-                      </div>
-                      <div class="buy-button">
-                          <button class="btn" type="button" name="buy">Buy</button>
-                      </div>
+      
+        <!-- Product section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" th:src="${product.image}" alt="..." /></div>
+                    <div class="col-md-6">
+                        <div class="small mb-1" th:text="${'ID: '+product.id}">SKU: BST-498</div>
+                        <h1 th:if="${product.status != 'sold'}" class="display-5 fw-bolder" th:text="${product.title}">Title</h1>
+                        <h1 th:if="${product.status == 'sold'}" class="display-5 fw-bolder" style="color:red;" th:text="${product.title}">Title</h1>
+						<p th:if="${product.status == 'sold'}" style="color:red;"> Sold </p>                        
+                            <span th:text="${'€ '+product.price}">Price</span>
+                        <p class="lead" th:text="${product.description}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+                        <p th:if="${success}" style="color:green;">Transaction was a success!</p>
+                            <p th:if="${failed}" style="color:red;">Transaction failed... </p>
+                        <div class="d-flex">
+                            <button th:if="${product.status != 'sold'}" class="btn btn-outline-dark flex-shrink-0" type="button" onclick="displayModal('creditCardModal')">
+                                <i class="bi-cart-fill me-1"></i>
+                                Buy
+                            </button> <br />
+                        </div>
                     </div>
+                </div>
+            </div>
+        </section>
+            
+            <div class="background-overlay" id="creditCardModal">
+	            <div class="padding">
+				    <div class="row">
+				        <div class="col-sm-6">
+				            <div class="card">
+				                <div class="card-header">
+                	        		<span
+					          			id="creditCardClose"
+					          			class="close pointer"
+					          			onclick="hideModal('creditCardModal')"
+					         			>&times;
+					         		</span>
+				                    <strong>Credit Card</strong>
+				                    <small>enter your card details</small>
+				                </div>
+				                <div class="card-body">
+				                <form id="purchaseFrom" th:action="@{/buy-product/{id}(id=${product.id})}" object="${card}" method="post"> </form>
+				                    <div class="row">
+				                        <div class="col-sm-12">
+				                            <div class="form-group">
+				                                <label for="cardNumber">Credit Card Number</label>
+				                                <div class="input-group">
+				                                    <input name="cardNumber" form="purchaseFrom" class="form-control" type="text" placeholder="0000 0000 0000 0000" required>
+				                                    <div class="input-group-append">
+				                                        <span class="input-group-text">
+				                                            <i class="mdi mdi-credit-card"></i>
+				                                        </span>
+				                                    </div>
+				                                </div>
+				                            </div>
+				                        </div>
+				                    </div>
+				                    <div class="row">
+				                        <div class="form-group col-sm-4">
+				                            <label for="ccmonth">Month</label>
+				                            <select name="month" form="purchaseFrom" class="form-control" id="ccmonth">
+				                                <option>01</option>
+				                                <option>02</option>
+				                                <option>03</option>
+				                                <option>04</option>
+				                                <option>05</option>
+				                                <option>06</option>
+				                                <option>07</option>
+				                                <option>08</option>
+				                                <option>09</option>
+				                                <option>10</option>
+				                                <option>11</option>
+				                                <option>12</option>
+				                            </select>
+				                        </div>
+				                        <div class="form-group col-sm-4">
+				                            <label for="ccyear">Year</label>
+				                            <select name="year" form="purchaseFrom" class="form-control" id="ccyear">  
+				                                <option>2021</option>
+				                                <option>2022</option>
+				                                <option>2023</option>
+				                                <option>2024</option>
+				                                <option>2025</option>
+				                                <option>2026</option>
+				                                <option>2027</option>
+				                                <option>2028</option>
+				                                <option>2029</option>
+				                                <option>2030</option>
+				                                <option>2031</option>
+				                                <option>2032</option>
+				                            </select>
+				                        </div>
+				                        <div class="col-sm-4">
+				                            <div class="form-group">
+				                                <label for="cvv">CVV/CVC</label>
+				                                <input name="cv2" form="purchaseFrom" class="form-control" id="cvv" type="text" placeholder="123" required>
+				                            </div>
+				                        </div>
+				                    </div>
+				                </div>
+				                <div class="card-footer">
+				                    <button form="purchaseFrom" class="card-button-border btn-sm btn-success float-right" type="submit">
+				                        <i class="mdi mdi-gamepad-circle"></i> Continue</button>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+				</div>
 
-                  </div>
+        <footer>
+            <div class="footer_small">
+              <div class="content_left">
+                <h1 id="logo_footer">Second-Hand</h1>
+              </div>
+              <div class="content_middle">
+                <a href="link">FAQ</a>
+                <a href="link">Privacy Policy</a>
+              </div>
+            </div>
 
-
-      <footer>
-        <div class="footer_small">
-          <div class="content_left">
-            <h1 id="logo_footer">Second-Hand</h1>
-          </div>
-          <div class="content_middle">
-            <a href="link">FAQ</a>
-            <a href="link">Privacy Policy</a>
-          </div>
-        </div>
-
-        <div class="content_right">
-          <div>
-            <h4>Follow us!</h4>
-          </div>
-          <div>
-              <a href="#" class="fa fa-facebook"></a>
-              <a href="#" class="fa fa-instagram"></a>
-          </div>
-        </div>
-      </footer>
-  </body>
+            <div class="content_right">
+              <div>
+                <h4>Follow us!</h4>
+              </div>
+              <div>
+                  <a href="#" class="fa fa-facebook"></a>
+                  <a href="#" class="fa fa-instagram"></a>
+              </div>
+            </div>
+          </footer>
+          <script src="../script/buy.js"></script>
+    </body>
 </html>

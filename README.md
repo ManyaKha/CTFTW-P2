@@ -2,22 +2,7 @@
 Project 2 for the subject Computer Technology for the Web
 
 
-## Static values
-### Status:
-* Available
-* Not for sale
-* Sold
-
-### Categories:
-* Cars and Motorcycles
-* Clothing, accessories and make-up
-* Electronics
-* Sports and Outdoor equipment
-* Bikes
-* Consoles and Video games
-* Home, office and garden
-* Home appliances
-* Movies, books and music
-* For childeren and babies
-* Collectables
-* Other
+## MONGODB
+For the MongoDB you should create a database with name: MONGO89_02_secondHand
+Then create a collection with name: Transactions
+The file MONGODB89_02_secondHand.json contains the elements to be in the collection Transactions

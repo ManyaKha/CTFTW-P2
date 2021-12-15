@@ -34,7 +34,7 @@
 	    		<th>Name of Product</th>
 	    	<tr>
 	    	<tr th:each="transaction : ${transactions}">
-	    		<td th:text="${transaction.timeOfTransaction}">Unknown</td>
+	    		<td th:text="${transaction.transactionId}">Unknown</td>
 	    		<td th:text="${transaction.timeOfTransaction}">Unknown</td>
 	    		<td th:text="${transaction.price}" class="number">Unknown</td>
 	    		<td th:text="${transaction.seller}">Unknown</td>

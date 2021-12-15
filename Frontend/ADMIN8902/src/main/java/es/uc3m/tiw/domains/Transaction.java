@@ -2,6 +2,7 @@ package es.uc3m.tiw.domains;
 
 public class Transaction {
 	
+	private String transactionId;
 	private String timeOfTransaction;
 	private String productName;
 	private int price;
@@ -12,7 +13,8 @@ public class Transaction {
 		
 	}
 	
-	public Transaction(String timeOfTransaction, String productName, int price, String seller,String buyer) {
+	public Transaction(String transactionId, String timeOfTransaction, String productName, int price, String seller,String buyer) {
+		this.setTransactionId(transactionId);
 		this.setTimeOfTransaction(timeOfTransaction);
 		this.setProductName(productName);
 		this.setPrice(price);
@@ -58,6 +60,14 @@ public class Transaction {
 
 	public void setBuyer(String buyer) {
 		this.buyer = buyer;
+	}
+
+	public String getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
 	}
 	
 	

@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({"transactionId", "timeOfTransaction", "productName", "price", "seller", "buyer"})
 public class Transaction implements Serializable{
 	
-	@Id
 	private String transactionId;
 	private String timeOfTransaction;
 	private String productName;

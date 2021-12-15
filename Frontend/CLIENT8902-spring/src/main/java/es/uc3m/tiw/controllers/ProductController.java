@@ -91,6 +91,7 @@ public class ProductController {
 					.getForObject("http://localhost:18903/products/users/" + user.getEmail(), Product[].class);
 			model.addAttribute("products", products);
 			model.addAttribute("current", user);
+			model.addAttribute("loggedin", true);
 			return "myproducts.html";
 		}
 		return "index.html";

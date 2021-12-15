@@ -1,0 +1,39 @@
+/*Display latest products*/
+.search_area {
+	margin: 0;
+	text-align: center;
+}
+
+.products {
+	margin: 0 auto;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 30px
+}
+.product_card {
+	background-color: white;
+}
+
+.product_card img {
+	width:200px;
+}
+
+.product_card img:hover{
+	background-color: #13c1ac;
+	transform: scale(1.1);
+}
+
+.image_gallery {
+	display: flex;
+	flex-wrap: wrap;
+	text-align: center;
+	justify-content: center;
+}
+
+.searchResults .product {
+	background-color: blue;
+}

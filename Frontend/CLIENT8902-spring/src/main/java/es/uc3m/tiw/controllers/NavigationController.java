@@ -46,7 +46,6 @@ public class NavigationController {
 		return "allproducts.html";
 	}
 	
-	
 	@RequestMapping (value="/myprofile", method = RequestMethod.GET)
 	public String myProfile(Model model){
 		User c = restTemplate.getForObject("http://localhost:18902/users/current", User.class);

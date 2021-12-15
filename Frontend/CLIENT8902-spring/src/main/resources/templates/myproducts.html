@@ -1,108 +1,136 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>User profile</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="style/style.css">
-  </head>
+<head>
+<meta charset="utf-8">
+<title>User profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Karla&amp;display=swap"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="style/style.css">
+<link rel="stylesheet" href="style/profile.css">
+<link rel="stylesheet" href="style/products.css">
+</head>
 
 <body>
-   
-	  <header id= main_header>
-        <a href="/"> <h1 id="logo">Second-Hand</h1> </a>
-        <div class=navbar_container>
-          <div class="menu_options">
-            <a href="#">About Us</a>
-            <a href="#">Contact Us</a>
-          </div>
-          <div class="buttons" id="buttons" th:if="not ${loggedin}">
-            <button type="button" class="login_button" onclick="location.href='../login'">Login</button>
-          </div>
-          <div class="buttons" id="buttons" th:if="${loggedin}">
-        		<button type="submit" class="login_button" onclick="location.href='../myprofile'">My profile</button>
-        		<button type="submit" class="login_button" onclick="location.href='/logout-user'">Log Out</button>
-        	</div>
-      </header>
+	<header id="main_header">
+		<a href="/">
+			<h1 id="logo">Second-Hand</h1>
+		</a>
+		<div class="navbar_container">
+			<div class="menu_options">
+				<a href="#">About Us</a> <a href="#">Contact Us</a>
+			</div>
+			<div class="buttons" id="buttons" th:if="not ${loggedin}">
+				<button type="button" class="login_button"
+					onclick="location.href='../login'">Login</button>
+			</div>
+			<div class="buttons" id="buttons" th:if="${loggedin}">
+				<button type="submit" class="login_button"
+					onclick="location.href='../myprofile'">My profile</button>
+				<button type="submit" class="login_button"
+					onclick="location.href='/logout-user'">Log Out</button>
+			</div>
+		</div>
+	</header>
 
-      <div class="form-container">
-        <h1>My Products</h1>
-        <section class="products">
-		        <div th:each="product : ${products}">
-		             <img class= "image" href="${product.image}" alt="Product image" >
-		              <div class="description-container" >
-		                  <h3 class="title" th:text="${product.title}"></h3>
-		                  <p class="id" id="id" th:text="${product.id}">Unknown</p>
-		                  <p class="category" th:text="${product.category}">Unknown</p>
-		                  <p class="price" th:text="${product.price}">Unknown</p>
-		                  <span>
-		                  	<a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                    		<a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-		                  </span>
-		                  
-		              	
-		              </div>
-		              
-		               
-		             
-		        </div>
-	        </section>
-      </div>
 
-	<div th:each="product : ${products}" th:id="${product.id+'Modal'}" class="background-overlay">
-      	<div class="modal products">
-      		<span id="editProductClose" class="close pointer" >&times;</span>
-       		<h3>Edit Product</h3>
-       		<hr />
-        	<form th:id="${product.id+'Form'}" th:action="@{/edit-product}" th:object="${product}" method="post">
-        		<label for="id">Product ID</label><br />
-        		<input type="text" name="id" th:value="${product.id}" readonly /> <br /><br />
-        		<label for="owner">Owner</label><br />
-        		<input type="text" name="owner" th:value="${product.owner}" readonly /> <br /><br />
-        		<label for="title">Title</label><br />
-        		<input type="text" name="title" th:value="${product.title}" /> <br /><br />
-        		<label for="price">Price</label><br />
-        		<input type="number" name="price" step="0.1" th:value="${product.price}" /> <br /><br />
-        		<label for="category">Category</label><br />
-        		<input type="text" name="category" th:value="${product.category}" /> <br /><br />
-        		<label for="category">Image</label><br />
-        		<input type="text" name="image" th:value="${product.image}" /> <br /><br />
-        		<label for="status">Status</label> <br />
-				<input type="text" name="status" th:value="${product.status}"> <br /><br />
+	<div class="form-container">
+		<h1>My Products</h1>
+		<section class="products">
+			<div th:each="product : ${products}">
+				<img class="image" th:src="${product.image}" alt="Product image">
+				<div class="description-container">
+					<h3 class="title" th:text="${product.title}"></h3>
+					<p class="id" id="id" th:text="${product.id}">Unknown</p>
+					<p class="category" th:text="${product.category}">Unknown</p>
+					<p class="price" th:text="${product.price}">Unknown</p>
+					<span> <a class="edit" title="Edit" data-toggle="tooltip"><i
+							class="material-icons">&#xE254;</i></a> <a class="delete"
+						title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+					</span>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<div th:each="product : ${products}" th:id="${product.id+'Modal'}"
+		class="background-overlay">
+		<div class="modal products">
+			<span id="editProductClose" class="close pointer">&times;</span>
+			<h3>Edit Product</h3>
+			<hr />
+			<form th:id="${product.id+'Form'}" th:action="@{/edit-product}"
+				th:object="${product}" method="post">
+				<label for="id">Product ID</label><br /> <input type="text"
+					name="id" th:value="${product.id}" readonly /> <br /> <br /> <label
+					for="owner">Owner</label><br /> <input type="text" name="owner"
+					th:value="${product.owner}" readonly /> <br /> <br /> <label
+					for="title">Title</label><br /> <input type="text" name="title"
+					th:value="${product.title}" /> <br /> <br /> <label for="price">Price</label><br />
+				<input type="number" name="price" step="0.1"
+					th:value="${product.price}" /> <br /> <br /> <label
+					for="category">Category</label><br /> <select id="category" th:value="${product.category}"
+					name="category">
+					<option value="Cars and Motorcycles">Cars and Motorcycles</option>
+					<option value="Clothing, accessories and make-up">Clothing,
+						accessories and make-up</option>
+					<option value="Electronics">Electronics</option>
+					<option value="Sports and Outdoor equipment">Sports and
+						Outdoor equipment</option>
+					<option value="Consoles and Video games">Consoles and
+						Video games</option>
+					<option value="Bikes">Bikes</option>
+					<option value="Home, office and garden">Home, office and
+						garden</option>
+					<option value="Home appliances">Home appliances</option>
+					<option value="Movies, books and music">Movies, books and
+						music</option>
+					<option value="For childeren and babies">For children and
+						babies</option>
+					<option value="Collectables">Collectible</option>
+					<option value="Other">Other</option>
+				</select> <br /> <br /> <label for="category">Image</label><br /> <input
+					type="text" name="image" th:value="${product.image}" /> <br /> <br />
+				<label for="status">Status</label> <br /> <input type="text"
+					name="status" th:value="${product.status}"> <br /> <br />
 				<label for="description">Description</label> <br />
-				<textarea name="description" th:form="${product.id+'Form'}" maxlength="500" th:text="${product.description}"></textarea> <br /><br >
-        		<input type="submit" value="Edit User">
-        	</form>
-      	</div>
-      </div>
+				<textarea name="description" th:form="${product.id+'Form'}"
+					maxlength="500" th:text="${product.description}"></textarea>
+				<br /> <br> <input type="submit" value="Edit User">
+			</form>
+		</div>
+	</div>
 
-      <footer>
-        <div class="footer_small">
-          <div class="content_left">
-            <h1 id="logo_footer">Second-Hand</h1>
-          </div>
-          <div class="content_middle">
-            <a href="link">FAQ</a>
-            <a href="link">Privacy Policy</a>
-          </div>
-        </div>
+	<footer>
+		<div class="footer_small">
+			<div class="content_left">
+				<h1 id="logo_footer">Second-Hand</h1>
+			</div>
+			<div class="content_middle">
+				<a href="link">FAQ</a> <a href="link">Privacy Policy</a>
+			</div>
+		</div>
 
-        <div class="content_right">
-          <div>
-            <h4>Follow us!</h4>
-          </div>
-          <div>
-              <a href="#" class="fa fa-facebook"></a>
-              <a href="#" class="fa fa-instagram"></a>
-          </div>
-        </div>
-      </footer>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <script src="script/script.js"></script>
-  </body>
+		<div class="content_right">
+			<div>
+				<h4>Follow us!</h4>
+			</div>
+			<div>
+				<a href="#" class="fa fa-facebook"></a> <a href="#"
+					class="fa fa-instagram"></a>
+			</div>
+		</div>
+	</footer>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="script/script.js"></script>
+</body>
 </html>

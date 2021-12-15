@@ -27,11 +27,4 @@ public class PaymentController {
 		
 		return response;
 	}
-	
-	@RequestMapping("/402.html")
-    public String render404(Model model) {
-        System.out.println("402-bank");
-        return "index";
-    }
-
 }

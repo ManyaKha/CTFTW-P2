@@ -5,35 +5,33 @@ import java.io.Serializable;
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	String id;
-	String title;
-
-	String owner;
-
-	String category;
 	
-	String description;
-	String image;
-	int price;
-	
-	String status;
+	private String id;
+	private String title;
+	private String owner;
+	private String category;
+	private String description;
+	private String image;
+	private float price;
+	private String status;
 	
 	public Product() {
 		
 	}
 	
-	public Product(String id, String title, String owner, String category, String description, String image, int price, String status) {
+
+	public Product(String id, String title, String owner, String category, String description, String image, float price, String status) {
 		super();
-		this.id=id;
+		this.id = id;
 		this.title=title;
 		this.owner=owner;
 		this.category=category;
-		this.description=description;
-		this.image=image;
+		this.description = description;
+		this.image = image;
 		this.price=price;
 		this.status=status;
 	}
-
+	
 	
 	public String getId() {
 		return id;
@@ -44,7 +42,7 @@ public class Product implements Serializable {
 	}
 
 	public String getTitle() {
-		return this.title;
+		return  title;
 	}
 
 	public void setTitle(String title) {
@@ -66,30 +64,29 @@ public class Product implements Serializable {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-
+	
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
-
+	
 	public void setDescription(String description) {
 		this.description = description;
 	}
 	
-	
-
 	public String getImage() {
 		return image;
 	}
-
+	
 	public void setImage(String image) {
 		this.image = image;
 	}
 
-	public int getPrice() {
+
+	public float getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 

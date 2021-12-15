@@ -64,7 +64,7 @@
            
             
            <section class="products searchResults">
-		        <div th:each="product : ${searchResults}" class="product_card">
+		        <div th:each="product : ${searchResults}" class="product_card" th:id=${product.id}>
 		             <img class= "image" th:src="${product.image}" alt="Product image" >
 		              <div class="description-container" >
 		                  <h3 class="title" th:text="${product.title}"></h3>

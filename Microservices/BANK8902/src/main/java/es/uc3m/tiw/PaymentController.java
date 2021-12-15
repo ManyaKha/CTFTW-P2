@@ -3,7 +3,6 @@ package es.uc3m.tiw;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,11 +26,4 @@ public class PaymentController {
 		
 		return response;
 	}
-	
-	@RequestMapping("/402.html")
-    public String render404(Model model) {
-        System.out.println("402-bank");
-        return "index";
-    }
-
 }

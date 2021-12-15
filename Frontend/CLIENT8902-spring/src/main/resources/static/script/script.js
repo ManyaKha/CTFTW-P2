@@ -39,3 +39,9 @@ $(".close").on("click", function(){
 	var modal = $(this).parent().parent().attr('id');
 	hideModal(modal);
 });
+
+$(".product_card").on("click", function(){
+	var id = $(this).attr('id');
+	window.location.href="product/"+id;
+});
+

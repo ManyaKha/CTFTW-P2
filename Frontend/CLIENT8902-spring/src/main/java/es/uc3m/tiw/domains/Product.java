@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
+
 	
 	private String id;
 	private String title;
@@ -18,6 +19,7 @@ public class Product implements Serializable {
 		
 	}
 	
+
 	public Product(String id, String title, String owner, String category, String description, String image, float price, String status) {
 		super();
 		this.id = id;
@@ -30,16 +32,17 @@ public class Product implements Serializable {
 		this.status=status;
 	}
 	
-	public String getId() {
-		return this.id;
-	}
 	
+	public String getId() {
+		return id;
+	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
 
 	public String getTitle() {
-		return this.title;
+		return  title;
 	}
 
 	public void setTitle(String title) {
@@ -71,12 +74,13 @@ public class Product implements Serializable {
 	}
 	
 	public String getImage() {
-		return this.image;
+		return image;
 	}
 	
 	public void setImage(String image) {
 		this.image = image;
 	}
+
 
 	public float getPrice() {
 		return price;

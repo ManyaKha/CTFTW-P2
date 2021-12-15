@@ -19,101 +19,6 @@ public class UserController {
 	String CLIE8902_URL = "http://localhost:18902/users";
 	String CURRENT_URL = "http://localhost:18902/users/current";
 
-	//Navigation
-	
-	@RequestMapping("/")	
-	public String index(Model model){
-		User c = getCurrentUser();
-		if(c!= null) {
-			model.addAttribute("loggedin", true);
-		}
-		return "index";
-	}
-	
-	@RequestMapping (value = "/register", method = RequestMethod.GET)
-	public String regsiter(Model model){
-		return "register.html";
-	}
-	
-	@RequestMapping (value="/login", method = RequestMethod.GET)
-	public String showLogin(Model model){
-		return "login.html";
-	}
-	
-	@RequestMapping (value="/products", method = RequestMethod.GET)
-	public String allProducts(Model model){
-		return "allproducts.html";
-	}
-	
-	@RequestMapping (value="/myprofile", method = RequestMethod.GET)
-	public String myProfile(Model model){
-		User c = getCurrentUser();
-		if(c!= null) {
-			model.addAttribute("current", c);
-			model.addAttribute("loggedin", true);
-			return "myprofile.html";
-		}
-		  
-		return "index.html";
-		
-	}
-	
-	@RequestMapping (value="/editprofile", method = RequestMethod.GET)
-	public String account(Model model){
-		User c = getCurrentUser();
-		if(c!= null) {
-			model.addAttribute("current", c);
-			model.addAttribute("loggedin", true);
-			return "editprofile.html";
-		}
-		  
-		return "index.html";
-	}
-	
-	@RequestMapping (value="/deleteprofile", method = RequestMethod.GET)
-	public String deleteUser(Model model){
-		User c = getCurrentUser();
-		if(c!= null) {
-			model.addAttribute("current", c);
-			model.addAttribute("loggedin", true);
-			return "deleteprofile.html";
-		}
-		  
-		return "index.html";
-	}
-	
-	
-	@RequestMapping (value="/addproduct", method = RequestMethod.GET)
-	public String addProduct(Model model){
-		User c = getCurrentUser();
-		if(c!= null) {
-			model.addAttribute("current", c);
-			return "addproduct.html";
-			
-		}
-		  
-		return "index.html";
-	}
-	
-	@RequestMapping (value="/myproducts", method = RequestMethod.GET)
-	public String myProducts(Model model){
-		User c = getCurrentUser();
-		if(c!= null) {
-			model.addAttribute("current", c);
-			return "myproducts.html";
-		}
-		  
-		return "index.html";
-	}
-	
-	
-
-	
-	@RequestMapping (value = "/get-current-user", method = RequestMethod.GET)
-	public User getCurrentUser() {
-		User user = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
-		return user;
-	}
 
 	
 	@RequestMapping (value = "/set-current-user", method = RequestMethod.PUT)
@@ -152,7 +57,7 @@ public class UserController {
 	
 	@RequestMapping (value = "/logout-user", method = RequestMethod.GET)
 	public String logoutUser(Model model){
-		User c = getCurrentUser();
+		User c = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
 		c.setCurrent(false);
 		restTemplate.put(this.CLIE8902_URL + "/" + c.getEmail(), c);
 		  
@@ -172,7 +77,7 @@ public class UserController {
 	
 	@RequestMapping (value = "/update-user", method = RequestMethod.POST)
 	public String updateUser(Model model, @ModelAttribute User uUser){
-		User u = getCurrentUser();
+		User u = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
 		User user = restTemplate.getForObject("http://localhost:18902/users/"+ u.getEmail(), User.class, uUser);
 		if (user != null) {
 			uUser.setCurrent(true);

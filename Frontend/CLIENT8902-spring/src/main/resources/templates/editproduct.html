@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Edit product</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="style/style.css">
+  </head>
+
+  <body>
+   
+	  <header id= main_header>
+        <a href="/"> <h1 id="logo">Second-Hand</h1> </a>
+        <div class=navbar_container>
+          <div class="menu_options">
+            <a href="#">About Us</a>
+            <a href="#">Contact Us</a>
+          </div>
+          <div class="buttons" id="buttons" th:if="not ${loggedin}">
+            <button type="button" class="login_button" onclick="location.href='../login'">Login</button>
+          </div>
+          <div class="buttons" id="buttons" th:if="${loggedin}">
+        		<button type="submit" class="login_button" onclick="location.href='../myprofile'">My profile</button>
+        		<button type="submit" class="login_button" onclick="location.href='/logout-user'">Log Out</button>
+        	</div>
+      </header>
+
+
+      <div class="form-container">
+        <h1>Edit product</h1>
+          <form class="form" th:action="@{/update-product}" th:object="${product}" method="post">
+
+            <div>
+            	<label for="title">Title:</label><br>
+            	<input type="text" name="title" required>
+            </div>
+
+            <div>
+              <label for="description">Description: </label>
+              <br>
+              <input type="text" name="description" required>
+            </div>
+
+            <div>
+              <label for="name">Category: </label>
+              <br>
+              <select type="button" id="category" name="category">
+	             <option value="" selected disabled hidden>Search by category</option>
+	              <option value="Cars and Motorcycles">Cars and Motorcycles</option>
+	              <option value="Clothing, accessories and make-up">Clothing, accessories and make-up</option>
+	              <option value="Electronics">Electronics</option>
+	              <option value="Sports and Outdoor equipment">Sports and Outdoor equipment</option>
+	              <option value="Consoles and Video games">Consoles and Video games</option>
+	              <option value="Bikes">Bikes</option>
+	              <option value="Home, office and garden">Home, office and garden</option>
+	              <option value="Home appliances">Home appliances</option>
+	              <option value="Movies, books and music">Movies, books and music</option>
+	              <option value="For childeren and babies">For children and babies</option>
+	              <option value="Collectables">Collectible</option>
+	              <option value="Other">Other</option>
+	            </select>
+            </div>
+
+            <div>
+              <label for="price">Price: </label>
+              <br>
+              <input type="text" name="price" required>
+            </div>
+
+            <div>
+              <label for="image">Image: </label>
+              <br>
+              <input type="text" name="city"  required>
+            </div>
+            <div>
+              <label for="status">Status: </label>
+              <br>
+              <input type="text" name="city" required>
+            </div>
+
+            <div><input type="submit" value="Update product" class="btn"></div>
+          </form>
+
+
+        </div>
+
+
+      <footer>
+        <div class="footer_small">
+          <div class="content_left">
+            <h1 id="logo_footer">Second-Hand</h1>
+          </div>
+          <div class="content_middle">
+            <a href="link">FAQ</a>
+            <a href="link">Privacy Policy</a>
+          </div>
+        </div>
+
+        <div class="content_right">
+          <div>
+            <h4>Follow us!</h4>
+          </div>
+          <div>
+              <a href="#" class="fa fa-facebook"></a>
+              <a href="#" class="fa fa-instagram"></a>
+          </div>
+        </div>
+      </footer>
+  </body>
+</html>

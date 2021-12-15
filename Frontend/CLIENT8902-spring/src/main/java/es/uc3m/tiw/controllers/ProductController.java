@@ -25,12 +25,11 @@ import es.uc3m.tiw.domains.User;
 public class ProductController {
 	@Autowired
 	RestTemplate restTemplate;
-	
-	
-	/*View product*/
-	@RequestMapping (value = "/", method = RequestMethod.GET)
-	public String returnAllProducts(Model model) {
-		Product[] productList = restTemplate.getForObject("http://localhost:18903/products",Product[].class);
+
+	/* View product */
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String getAllProducts(Model model) {
+		Product[] productList = restTemplate.getForObject("http://localhost:18903/products", Product[].class);
 		User user = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
 		model.addAttribute("productList", productList);
 		if (user != null) {
@@ -39,66 +38,85 @@ public class ProductController {
 		}
 		return "index.html";
 	}
-	
-	/*Search product - Search*/
-	@RequestMapping (value = "search", method = RequestMethod.GET)
+
+	/* Search product - Search */
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String searchProducts(Model model, @RequestParam String keyword) {
-		Product[] searchResults = restTemplate.getForObject("http://localhost:18903/products/{keyword}", Product[].class, keyword);
+		Product[] searchResults = restTemplate.getForObject("http://localhost:18903/products/{keyword}",
+				Product[].class, keyword);
 		User user = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("searchResults", searchResults);
 		if (user != null) {
 			model.addAttribute("loggedin", true);
-			return "allproducts.html";	
+			return "allproducts.html";
 		}
 		model.addAttribute("loggedin", false);
-		return "allproducts.html";	
+		return "allproducts.html";
 	}
-	
-	/*Search product - Search by category*/
-	@RequestMapping (value = "search-category", method = RequestMethod.GET)
+
+	/* Search product - Search by category */
+	@RequestMapping(value = "/search-category", method = RequestMethod.GET)
 	public String advanceSearchProducts(Model model, @RequestParam String category) {
-		Product[] searchResults = restTemplate.getForObject("http://localhost:18903/products/category/{category}", Product[].class, category);
+		Product[] searchResults = restTemplate.getForObject("http://localhost:18903/products/category/{category}",
+				Product[].class, category);
 		User user = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
 		model.addAttribute("category", category);
 		model.addAttribute("searchResults", searchResults);
 		if (user != null) {
 			model.addAttribute("loggedin", true);
-			return "allproducts.html";	
+			return "allproducts.html";
 		}
 		model.addAttribute("loggedin", false);
-		return "allproducts.html";	
-	}
-	
-	
-	/*Create New Product*/
-	@RequestMapping (value = "addProduct", method = RequestMethod.POST)
-	public String addProduct(Model model, @ModelAttribute Product product) {
-	   Product newProduct = restTemplate.postForObject("http://localhost:18903/products/createProduct", product, Product.class);
-	   model.addAttribute("product", newProduct);
-	   return "index";
-    }
-   
-	/*Delete existing product*/
-	@RequestMapping (value = "deleteProduct", method = RequestMethod.POST)
-	public String deleteProduct(Model model, @RequestParam Product product){
-		Product delProduct = restTemplate.getForObject("http://localhost:18903/products/{owner}/{title}", Product.class, product);
-		if (delProduct != null) {
-			restTemplate.delete("http://localhost:18903/products/{owner}/{title}", delProduct.getOwner(), delProduct.getTitle());
-		}
-		return "index";	
+		return "allproducts.html";
 	}
 
-	/*Update existing product*/
-	@RequestMapping (value = "updateProduct", method = RequestMethod.POST)
-	public String updateProduct(Model model, @ModelAttribute Product product){
-		Product updateProduct = restTemplate.getForObject("http://localhost:18903/products/{owner}/{title}", Product.class, product);
-		if(updateProduct !=null) {
-			restTemplate.put("http://localhost:18903/products/{owner}/{title}", updateProduct.getOwner(), updateProduct.getTitle());			
-		}
-		return "index";	
+	/* Create New Product */
+	@RequestMapping(value = "/add-product", method = RequestMethod.POST)
+	public String addProduct(Model model, @ModelAttribute Product product) {
+		Product newProduct = restTemplate.postForObject("http://localhost:18903/products", product, Product.class);
+		System.out.println(newProduct);
+		User user = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
+		model.addAttribute("product", newProduct);
+		model.addAttribute("user", user);
+		return "index.html";
 	}
+
+	/* Get all products by user */
+	@RequestMapping(value = "/myproducts", method = RequestMethod.GET)
+	public String getAllProductsByUser(Model model) {
+		User user = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
+		if (user != null) {
+			Product[] products = restTemplate
+					.getForObject("http://localhost:18903/products/users/" + user.getEmail(), Product[].class);
+			model.addAttribute("products", products);
+			model.addAttribute("current", user);
+			return "myproducts.html";
+		}
+		return "index.html";
+	}
+
+	/* Delete existing product */
+	@RequestMapping(value = "/delete-product/{id}", method = RequestMethod.POST)
+	public String deleteProduct(@PathVariable String id) {
+		restTemplate.delete("http://localhost:18903/products/" + id);
+		return "myproducts.html";
+	}
+
 	
+
+	  /*Update existing product*/
+	  @RequestMapping (value = "/edit-product", method = RequestMethod.POST)
+	  public String updateProduct(Model model, Product product){
+		  restTemplate.put("http://localhost:18903/products/"+product.getId(), product); 
+		  User user = restTemplate.getForObject("http://localhost:18902/users/current", User.class);
+		  Product[] products = restTemplate
+				.getForObject("http://localhost:18903/products/users/" + user.getEmail(), Product[].class);
+		  model.addAttribute("products", products);
+		  return "myproducts.html"; 
+	  }
+	 
+
 	
 	
 	@RequestMapping (value = "product/{id}", method = RequestMethod.GET)
@@ -151,6 +169,4 @@ public class ProductController {
 	    }
 	}
 
-	
-	
 }

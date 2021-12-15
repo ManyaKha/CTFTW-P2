@@ -30,8 +30,12 @@
 
       <div class="form-container">
         <h1>Add Product</h1>
-          <form class="form" th:action="@{/addProduct}" th:object="${product}" method="post">
-
+          <form class="form" th:action="@{/add-product}" th:object="${product}" method="post">
+			<div>
+              <label for="id">Id:</label>
+              <br>
+              <input type="text" name="id" required>
+            </div>
             <div>
 
               <label for="title">Title:</label>
@@ -39,26 +43,35 @@
               <input type="text" name="title" required>
             </div>
             
-            <div class="hidden_input">
+            <div  class="hidden_input">
               <label for="owner">Owner email:</label>
               <br>
-              <input type="text" name="owner" th:value=${user.email} >
+              <input type="text" name="owner" th:value=${current.email} >
             </div>
 
 
             <div>
               <label for="description">Description: </label>
               <br>
-              <input id="description" type="text" name="description" required>
+              <input type="text" name="description" required>
             </div>
             <div class="">
-              <label for="categories">Select Category: </label>
-              <select name="category" id="category">
-                <option value="cat1">Category</option>
-                <option value="cat2">Category2</option>
-                <option value="cat3">Category3</option>
-                <option value="cat4">Category4</option>
-              </select>
+              <label for="category">Select Category: </label>
+              <select type="button" id="category" name="category">
+	             <option value="" selected disabled hidden>Search by category</option>
+	              <option value="Cars and Motorcycles">Cars and Motorcycles</option>
+	              <option value="Clothing, accessories and make-up">Clothing, accessories and make-up</option>
+	              <option value="Electronics">Electronics</option>
+	              <option value="Sports and Outdoor equipment">Sports and Outdoor equipment</option>
+	              <option value="Consoles and Video games">Consoles and Video games</option>
+	              <option value="Bikes">Bikes</option>
+	              <option value="Home, office and garden">Home, office and garden</option>
+	              <option value="Home appliances">Home appliances</option>
+	              <option value="Movies, books and music">Movies, books and music</option>
+	              <option value="For childeren and babies">For children and babies</option>
+	              <option value="Collectables">Collectible</option>
+	              <option value="Other">Other</option>
+	            </select>
             </div>
 
             <div>
@@ -69,15 +82,15 @@
 
 
             <div>
-              <label for="picture">Product Picture: </label>
+              <label for="image">Image: </label>
               <br>
-              <input type="file" name="image" >
+              <input type="text" name="image">
             </div>
             
             <div class="hidden_input">
               <label for="status">Status: </label>
               <br>
-              <input type=text name="status" value="Available">
+              <input type=text name="status" value="available">
             </div>
 
             <div>

@@ -141,6 +141,7 @@ h3, h4, p, a, label {
 	font-size: 17px;
 	padding: 15px 23px;
 	text-decoration: none;
+	margin: 4px
 }
 
 .search button:hover {
@@ -157,8 +158,21 @@ h3, h4, p, a, label {
 }
 
 
+#advanced_search input, #advanced_search select {
+
+    background-color: white;
+    padding: 15px;
+    font-size: 17px;
+    border: 1px solid #13c1ac;
+    font-family: 'Readex Pro', sans-serif;
+    margin-left: 4px;
+    color: #757575;
+  }
 
 
+.empty {
+	height: 150px;
+}
 
 /*Footer*/
 footer {
@@ -305,6 +319,11 @@ footer h4 {
 .btn:hover {
 	background-color: #13c1ac;
 	color: white;
+}
+
+
+.profile-button-div {
+	margin: 20px;
 }
 
 #create-user {

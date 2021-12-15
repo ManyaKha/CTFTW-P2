@@ -66,8 +66,12 @@
 }
 
 .products {
-	width: 500px;
-	height: 800px;
+	
+	height: fit-content;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .modal span {
@@ -89,6 +93,7 @@
 
 .modal form {
 	padding-left: 10%;
+	padding-bottom: 26px;
 }
 
 .modal form input[type=text], .modal select, .modal form input[type="number"]
@@ -129,6 +134,22 @@
 	border-radius: 2px;
 }
 
+.image-myproducts {
+	width: 250px;
+}
+
 .modal form input[type="submit"]:hover {
 	cursor: pointer;
 }
+
+.product-div{
+	display: flex;
+    flex-direction: column;
+	margin-top: 20px;
+    border: 1px solid #eee;
+    padding: 15px;
+}
+
+
+/*All products page */
+

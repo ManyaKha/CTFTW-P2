@@ -12,20 +12,29 @@
 	align-items: center;
 	text-align: center;
 	padding-top: 20px;
-	padding-bottom: 30px
+	padding-bottom: 30px;
+	flex-wrap:wrap;
+	
 }
 .product_card {
 	background-color: white;
+	margin: 20px;
+	width: 15%;
+	height: 400px;
 }
 
-.product_card img {
-	width:200px;
-}
-
-.product_card img:hover{
+.product_card:hover{
 	background-color: #13c1ac;
 	transform: scale(1.1);
 }
+
+.product_card .image {
+	width: 100%;
+	height: 50%;
+	object-fit: cover;
+}
+
+
 
 .image_gallery {
 	display: flex;
@@ -36,4 +45,8 @@
 
 .searchResults .product {
 	background-color: blue;
+}
+
+#body-allproducts {
+	min-height:100%''
 }

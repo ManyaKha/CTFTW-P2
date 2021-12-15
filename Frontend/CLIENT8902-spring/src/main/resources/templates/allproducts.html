@@ -8,8 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla&family=Readex+Pro&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="style/latestproducts.css">
   </head>
-  <body>
+  <body id="body-allproducts">
     <header id= main_header>
         <a href="/"> <h1 id="logo">Second-Hand</h1> </a>
         <div class=navbar_container>
@@ -63,8 +64,8 @@
            
             
            <section class="products searchResults">
-		        <div th:each="product : ${searchResults}">
-		             <img class= "image" src="${product.image}" alt="Product image" >
+		        <div th:each="product : ${searchResults}" class="product_card">
+		             <img class= "image" th:src="${product.image}" alt="Product image" >
 		              <div class="description-container" >
 		                  <h3 class="title" th:text="${product.title}"></h3>
 		                  <p class="category"><span th:text="${product.category}">default category</span></p>
@@ -72,7 +73,7 @@
 		              </div>
 		        </div>
 	        </section>
-   
+    <div class="empty"></div>
           <footer>
             <div class="footer_small">
               <div class="content_left">
@@ -93,6 +94,8 @@
                   <a href="#" class="fa fa-instagram"></a>
               </div>
             </div>
+            
+           
           </footer>
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
           <script src="script/script.js"></script>

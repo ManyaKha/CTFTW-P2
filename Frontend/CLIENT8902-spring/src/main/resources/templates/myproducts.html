@@ -43,8 +43,8 @@
 	<div class="form-container">
 		<h1>My Products</h1>
 		<section class="products">
-			<div th:each="product : ${products}">
-				<img class="image" th:src="${product.image}" alt="Product image">
+			<div th:each="product : ${products}" class="product-div">
+				<img class="image-myproducts" th:src="${product.image}" alt="Product image">
 				<div class="description-container">
 					<h3 class="title" th:text="${product.title}"></h3>
 					<p class="id" id="id" th:text="${product.id}">Unknown</p>
@@ -102,7 +102,7 @@
 				<label for="description">Description</label> <br />
 				<textarea name="description" th:form="${product.id+'Form'}"
 					maxlength="500" th:text="${product.description}"></textarea>
-				<br /> <br> <input type="submit" value="Edit User">
+				<br /> <br> <input type="submit" value="Edit Product">
 			</form>
 		</div>
 	</div>
